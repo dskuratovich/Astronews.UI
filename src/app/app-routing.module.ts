@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'News', component: NewsComponent },
   { path: 'NasaGallery', component: NasaGalleryComponent },
   { path: 'MarsPhotos', component: MarsPhotosComponent },
-  { path: 'APOD', component:APODComponent }
+  { path: 'APOD', component:APODComponent },
   { path: '', redirectTo: '/News', pathMatch: 'full' }
 ];
 
