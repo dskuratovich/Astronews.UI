@@ -1,5 +1,7 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:32770'
+    apiUrl: 'https://localhost:32782',
+    apiKey: '2K/o/MucH+1YHjWuMsmnmtylCkapOP38RVzGT0oqq24=',
+    token: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5lZWRsaWRlQGV4YW1wbGUuY29tIiwibmJmIjoxNjk0NzE0NzQxLCJleHAiOjE2OTQ3MTgzNDEsImlhdCI6MTY5NDcxNDc0MSwiaXNzIjoiU3RlbGxhclN0cmVhbUFQSSIsImF1ZCI6IlVzZXJzIn0.UI7EpQAm6GDVfCKK4PKFjWntJy-R0F3smQbijtwwkF79DwDtZF7FXKQG-CLDmRbjNzLko2CXMJCE2_VvvlqTqmEyXgjPYUzpWuwxB3idR22RCczyW4FpljshV8N9mALgpMRF8_d7TGxXYDfmXQwF_oSL9SKmoLEinTpPdnITQl9XpdVALTrfU-68tSvZzDBbu1ofDlWVoPT7gvRo1pgxvwzbBZoHuFOX7iwwutPd-mt8P2nd1-lelUf4fwNfPVDKNBluhk_EUJFmXlWSIzzcvCTNPjZs1pWfEC20hXZ88Wi0uTTdQHdVDMKm80NPKwbHAssvB7h4VMHik0IXRrGfMQ'
   };
   

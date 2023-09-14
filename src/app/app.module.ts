@@ -9,7 +9,8 @@ import { NewsComponent } from './news/news.component';
 import { MarsPhotosComponent } from './mars-photos/mars-photos.component';
 import { NasaGalleryComponent } from './nasa-gallery/nasa-gallery.component';
 import { APODComponent } from './apod/apod.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
