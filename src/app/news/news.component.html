@@ -1,7 +1,7 @@
 <div class="container bg-dark">
     <div *ngFor="let item of data" class="row">
         <div *ngIf="item.imageUrl && item.title" class="col-md-4">
-            <h4 class="title" class="text-white">{{ item.title }}</h4>
+            <h4 class="title text-white">{{ item.title }}</h4>
             <img class="img-responsive" [src]="item.imageUrl">
 
             <div *ngIf="item.summary || item.newsSite || item.publishedAt" class="caption" style="padding-bottom:40px">

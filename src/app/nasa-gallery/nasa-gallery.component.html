@@ -1,1 +1,15 @@
-<p>nasa-gallery works!</p>
+<div class="container bg-dark">
+    <div *ngFor="let item of data" class="row">
+        <div *ngIf="item.href && item.title" class="col-md-4">
+            <h4 class="title text-white">{{ item.title }}</h4>
+            <img class="img-responsive" [src]="item.href">
+
+            <div *ngIf="item.center || item.dateCreated || item.secondaryCreator || item.description" class="caption">
+                <p *ngIf="item.center" class="text-white">{{ item.center }}</p>
+                <p *ngIf="item.dateCreated" class="text-white">{{ item.dateCreated }}</p>
+                <p *ngIf="item.description" class="text-white">{{ item.description }}</p>
+                <p *ngIf="item.secondaryCreator" class="text-white">{{ item.secondaryCreator }}</p>
+            </div>
+        </div>
+    </div>
+</div>
