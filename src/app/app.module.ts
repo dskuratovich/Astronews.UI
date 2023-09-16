@@ -11,6 +11,7 @@ import { NasaGalleryComponent } from './nasa-gallery/nasa-gallery.component';
 import { APODComponent } from './apod/apod.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuthInterceptorService } from './auth-interceptor.service';
     NewsComponent,
     MarsPhotosComponent,
     NasaGalleryComponent,
-    APODComponent
+    APODComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

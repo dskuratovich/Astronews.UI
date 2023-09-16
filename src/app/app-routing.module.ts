@@ -4,12 +4,14 @@ import { NewsComponent } from 'src/app/news/news.component';
 import { NasaGalleryComponent } from './nasa-gallery/nasa-gallery.component';
 import { MarsPhotosComponent } from './mars-photos/mars-photos.component';
 import { APODComponent } from './apod/apod.component';
+import { ErrorComponent } from './error/error.component';
  
 const routes: Routes = [
   { path: 'News', component: NewsComponent },
   { path: 'NasaGallery', component: NasaGalleryComponent },
   { path: 'MarsPhotos', component: MarsPhotosComponent },
-  { path: 'APOD', component:APODComponent },
+  { path: 'APOD', component: APODComponent },
+  { path: 'Error', component: ErrorComponent },
   { path: '', redirectTo: '/News', pathMatch: 'full' }
 ];
 
