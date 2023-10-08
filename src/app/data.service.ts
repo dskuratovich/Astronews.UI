@@ -10,7 +10,7 @@ import { NewsModel } from './models/news.model';
 })
 export class DataService {
 
-  apiUrl = environment.apiUrl;
+  apiUrl = environment.api.url;
 
   constructor(private http: HttpClient) { }
 

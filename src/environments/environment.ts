@@ -1,7 +1,16 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://localhost:32768',
-    apiKey: '2K/o/MucH+1YHjWuMsmnmtylCkapOP38RVzGT0oqq24=',
-    token: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5lZWRsaWRlQGV4YW1wbGUuY29tIiwibmJmIjoxNjk0ODA1ODQ0LCJleHAiOjE2OTQ4MDk0NDQsImlhdCI6MTY5NDgwNTg0NCwiaXNzIjoiU3RlbGxhclN0cmVhbUFQSSIsImF1ZCI6IlVzZXJzIn0.4N7yUd0FyOCkDL8r1Su1UIEPkAN5paRc-49PvXrqSLsnaar9uhrmyvw1S4PLC9O3l1Yq6uZQ0ZLmIUfMm1dtzzfQo5PV3MlJFiiFyj9sjad9F0L37cI5WyIjgUXVYhcsZ2VwPPQm8XUfumRsEnULe00IvXCMCaFYq_0jalKiKWzELA4qkFl2fgNb74sRjiqCEg19eJGuyVJW2LUEu7YCrzvEMfj9Loj6X5QNgxQwSfX-rf7ktrDUE3dvaCMQRXXv-op1_L21Smza7i_a834XpdiDRPZc03UQXT0RSisJv9GTyw9SipnAL2kBW0uYSNzY36s-RwFNFBKkSx5h1dNM5A'
+    api : {
+      url: 'https://localhost:32770',
+      loginEndpoint : 'https://localhost:32770/api/Administrative/user/login',
+      newsEndpoint : 'https://localhost:32770/news',
+      nasaEndpoint : 'https://localhost:32770/nasa-library',
+      marsEndpoint : 'https://localhost:32770/mars-rover-photos',
+      apodEndpoint : 'https://localhost:32770/apod',
+      login : 'needlide@example.com',
+      password : 'mypassword'
+    },
+    apiKey: '1yhYsdgfY+8xM5z8i5oKo4ZX+Tk/vqhzA7AWEERDIJ0=',
+    token: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5lZWRsaWRlQGV4YW1wbGUuY29tIiwibmJmIjoxNjk2NzU3MjQ4LCJleHAiOjE2OTY3NjA4NDgsImlhdCI6MTY5Njc1NzI0OCwiaXNzIjoiU3RlbGxhclN0cmVhbUFQSSIsImF1ZCI6IlVzZXJzIn0.t30tCmYQ80rDEvfRPZW_pEafcechxV8iMb5jFbST2isRxeN_TEBTVmXbbcnoxmYPol6a7MIBGAaIbhmN5wKNNkTz9f9XXhtVvl9RBxV26LnbZi8d_SxHIXRkFxqikYhScPnJhWMJUukh_eNxK_a8B_sTw_BEplRsTQIfxFAYkUATex5Ng79EWABKVTvWVdfHG7sZ0onIfJsiZIIzGPV4tyAvupvqDCfiznyhJDYipqrrRxWgQSxilbtbDJeHHPKGG31POf6EvihK7hf8MHVpjM3yX-l0H_40VXiIrcQP9TDS4mwolsoHsFVctWtlg-OtE9fXYO4bDUcByyEenlMvyA'
   };
   
