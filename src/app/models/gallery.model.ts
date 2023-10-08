@@ -1,13 +1,8 @@
+import { DataModel } from "./gallery-submodels/data.model";
+import { LinkModel } from "./gallery-submodels/link.model";
+
 export interface GalleryModel {
-    id: number;
-    center: string;
-    title: string;
-    nasaId: string;
-    mediaType: string;
-    keywords: string[];
-    dateCreated: any;
-    secondaryDescription: string;
-    secondaryCreator: string;
-    description: string;
     href: string;
+    data: DataModel[];
+    links: LinkModel[];
 }
