@@ -1,15 +1,15 @@
 <div class="container bg-dark">
     <div *ngFor="let item of data" class="row">
-        <div *ngIf="item.href && item.title" class="col-md-4">
-            <h4 class="title text-white">{{ item.title }}</h4>
-            <img class="img-responsive" [src]="item.href">
+        <div *ngIf="item.assets && item.data" class="col-md-4">
+            <h4 class="title text-white">{{ item.data[0].title }}</h4>
+            <img class="img-responsive" [src]="item.assets[8]">
 
-            <div *ngIf="item.center || item.dateCreated || item.secondaryCreator || item.description" class="caption">
-                <p *ngIf="item.center" class="text-white">{{ item.center }}</p>
-                <p *ngIf="item.dateCreated" class="text-white">{{ item.dateCreated }}</p>
-                <p *ngIf="item.description" class="text-white">{{ item.description }}</p>
-                <p *ngIf="item.secondaryCreator" class="text-white">{{ item.secondaryCreator }}</p>
+            <div class="caption">
+                <p *ngIf="item.data[0].center" class="text-white">{{ item.data[0].center }}</p>
+                <p *ngIf="item.data[0].dateCreated" class="text-white">{{ item.data[0].dateCreated }}</p>
+                <p *ngIf="item.data[0].description" class="text-white">{{ item.data[0].description }}</p>
             </div>
         </div>
     </div>
 </div>
+
