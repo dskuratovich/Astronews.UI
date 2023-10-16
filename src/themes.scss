@@ -1,0 +1,38 @@
+[data-theme="dark"] {
+    /*Common*/
+    --button-color: #486a82;
+    --highlight-color: #e3d18a;
+    /*------------------------------*/
+  
+    /*Body*/
+    --main-bg-color: #091a28;
+    --main-text-color: #cdd7e0;
+    --main-link-hover-color: #58a4b0;
+    /*------------------------------*/
+  
+    /*Header & footer*/
+    --second-bg-color: #02040a;
+    --second-text-color: #a8b4c4;
+    --second-link-hover-color: #e46443;
+    /*------------------------------*/
+  }
+  
+  [data-theme="light"] {
+    /*Common*/
+    --button-color: #B0C4DE;
+    --highlight-color: #E9B44C;
+    /*------------------------------*/
+  
+    /*Body*/
+    --main-bg-color: #E9EFF5;
+    --main-text-color: #17263C;
+    --main-link-hover-color: #2C8C99;
+    /*------------------------------*/
+  
+    /*Header & footer*/
+    --second-bg-color: #4A6D8C;
+    --second-text-color: #021014;
+    --second-link-hover-color: #DA4E49;
+    /*------------------------------*/
+  }
+  

@@ -1,14 +1,14 @@
-<div class="container bg-dark">
-    <div *ngFor="let item of data" class="row">
-        <div *ngIf="item.imgSrc" class="col-md-4">
+<div>
+    <div *ngFor="let item of data">
+        <div *ngIf="item.imgSrc">
             <div>
-                <div class="caption">
-                    <p class="text-white">{{item.sol}}</p>
-                    <div class="text-white">
+                <div>
+                    <p>{{item.sol}}</p>
+                    <div>
                         <h6>{{item.camera.name}}</h6>
                         <p>Full name: {{item.camera.full_name}}</p>
                     </div>
-                    <div class="text-white">
+                    <div>
                         <h6>{{item.rover.name}}</h6>
                         <p>Launch date: {{item.rover.launch_date}}</p>
                         <p>Landing date: {{item.rover.landing_date}}</p>
@@ -16,9 +16,9 @@
                         <p>Last Earth day with photo data: {{item.rover.max_date}}</p>
                         <p>Rover's mission status: {{item.rover.status}}</p>
                     </div>
-                    <p class="text-white">{{item.earthDate}}</p>
+                    <p >{{item.earthDate}}</p>
                 </div>
-                <img class="img-responsive" [src]="item.imgSrc">
+                <img [src]="item.imgSrc">
             </div>
         </div>
     </div>

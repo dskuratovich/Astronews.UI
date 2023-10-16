@@ -1,14 +1,14 @@
-<div class="container bg-dark">
-    <div *ngFor="let item of data" class="row">
+<div>
+    <div *ngFor="let item of data">
         <div *ngIf="item.url && item.title">
-            <h4 class="title text-white">{{item.title}}</h4>
+            <h4>{{item.title}}</h4>
             <div *ngIf="item.explanation">
-                <span class="tooltiptext text-white">{{item.explanation}}</span>
+                <span>{{item.explanation}}</span>
             </div>
-            <img class="img-responsive" [src]="item.url">
-            <div class="caption">
-                <p class="text-white">{{item.copyright}}</p>
-                <p class="text-white">{{item.date}}</p>
+            <img [src]="item.url">
+            <div>
+                <p>{{item.copyright}}</p>
+                <p>{{item.date}}</p>
                 <a [href]="item.hdUrl" target="_blank">HD image</a>
             </div>
         </div>
