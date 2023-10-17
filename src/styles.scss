@@ -2,12 +2,22 @@
 @import "node_modules/modern-normalize/modern-normalize.css";
 @import "themes";
 
+html {
+  scrollbar-width: none;
+}
+
 body {
   text-decoration: none;
   text-transform: none;
   font-size: 16px;
   font-weight: 400;
   font-family: sans-serif;
+  background: var(--main-bg-color);
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 ul {
