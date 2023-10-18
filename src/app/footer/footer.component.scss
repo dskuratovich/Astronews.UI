@@ -1,0 +1,20 @@
+footer {
+    background-color: var(--second-bg-color);
+    color: var(--second-text-color);
+    border-top: 2px solid var(--highlight-color);
+    padding: 10px 0px 20px 80px;
+    width: 100vw;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+
+.footer-list > li:not(:last-child) {
+    margin-right: 15px;
+}
+
+.footer-feedback {
+    margin-bottom: 15px;
+}
