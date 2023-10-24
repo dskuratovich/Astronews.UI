@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GalleryModel } from '../models/gallery.model';
 import { DataService } from '../data.service';
 import { ErrorService } from '../error.service';
 import { Router } from '@angular/router';
-import { ApiKeyService } from '../api-key.service';
-import { AuthService } from '../auth.service';
-import { switchMap, tap } from 'rxjs';
+import { Data } from '../models/gallery.root.model';
+import { PromptService } from '../prompt.service';
 
 @Component({
   selector: 'app-nasa-gallery',
@@ -13,34 +11,36 @@ import { switchMap, tap } from 'rxjs';
   styleUrls: ['./nasa-gallery.component.scss']
 })
 export class NasaGalleryComponent implements OnInit {
-  data: GalleryModel[] = [];
+  data: Data[] = [];
 
   constructor(private apiCaller: DataService,
     private errorService: ErrorService, private router: Router,
-    private authService: AuthService, private apiKeyService: ApiKeyService) { }
+    private promptService: PromptService) { }
 
   ngOnInit(): void {
-    if (this.apiKeyService.getApiKey() === '') {
-      this.authService.fetchApiKey().pipe(
-        tap(response => {
-          this.apiKeyService.setApiKey(response);
-        }),
-        switchMap(() => this.apiCaller.getNasaGallery())
-      ).subscribe({
-        next: (v) => this.data = v,
-        error: (e) => {
-          this.errorService.sendError('Error occured during fetching the data. Please, try again shortly.');
-          this.router.navigate(['/Error']);
+    this.apiCall('');
+  }
+
+  onScrollDown(): void {
+    this.apiCall(this.promptService.LibraryNext);
+  }
+
+  apiCall(url: string): void {
+    this.apiCaller.getNasaGallery(url).subscribe({
+      next: (v) => {
+        this.data = [...this.data, ...v.collection.items];
+        console.log(this.data);
+        for (let link of v.collection.links) {
+          if (link.prompt == 'Next') {
+            this.promptService.LibraryNext = link.href;
+            break;
+          }
         }
-      });
-    } else {
-      this.apiCaller.getNasaGallery().subscribe({
-        next: (v) => this.data = v,
-        error: (e) => {
-          this.errorService.sendError('Error occured during fetching the data. Please, try again shortly.');
-          this.router.navigate(['/Error']);
-        }
-      });
-    }
+      },
+      error: (e) => {
+        this.errorService.sendError('Error occured during fetching the data. Please, try again shortly.');
+        this.router.navigate(['/Error']);
+      }
+    });
   }
 }

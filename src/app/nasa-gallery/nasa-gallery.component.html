@@ -1,15 +1,19 @@
-<div>
-    <div *ngFor="let item of data">
-        <div *ngIf="item.assets && item.data">
-            <h4>{{ item.data[0].title }}</h4>
-            <img [src]="item.assets[8]">
+<section class="container content"
+infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="50"
+(scrolled)="onScrollDown()">
+    <article class="tile" *ngFor="let item of data">
+        <div class="tile-content" *ngIf="item.links && item.data[0]">
+            <h2>{{ item.data[0].title }}</h2>
+            <img [src]="item.links[0].href">
 
             <div>
-                <p *ngIf="item.data[0].center">{{ item.data[0].center }}</p>
-                <p *ngIf="item.data[0].dateCreated">{{ item.data[0].dateCreated }}</p>
-                <p *ngIf="item.data[0].description">{{ item.data[0].description }}</p>
+                <p class="tile-summary" *ngIf="item.data[0].description">{{ item.data[0].description }}</p>
+                <p class="tile-summary" *ngIf="item.data[0].center">{{ item.data[0].center }}</p>
+                <p *ngIf="item.data[0].date_created">{{ item.data[0].date_created }}</p>
             </div>
         </div>
-    </div>
-</div>
+    </article>
+</section>
 

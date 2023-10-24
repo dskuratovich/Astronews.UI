@@ -1,23 +1,33 @@
-<section class="container content">
-  <article class="tile" *ngFor="let item of data">
-    <div class="tile-content" *ngIf="item.imageUrl && item.title">
-      <h2>{{ item.title }}</h2>
-      <img [src]="item.imageUrl" />
+<section
+  class="container content"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScrollDown()"
+>
+<section>
+  <button type="button" (click)="toggleSort()">Title</button>
+</section>
 
-      <div *ngIf="item.summary || item.newsSite || item.publishedAt">
+  <article class="tile" *ngFor="let item of sortedData">
+    <div class="tile-content" *ngIf="item.image_url && item.title">
+      <h2>{{ item.title }}</h2>
+      <img [src]="item.image_url" />
+
+      <div *ngIf="item.summary || item.news_site || item.published_at">
         <p class="tile-summary" *ngIf="item.summary">{{ item.summary }}</p>
 
         <div class="link-wrapper">
           <a
             class="tile-link"
-            *ngIf="item.newsSite"
+            *ngIf="item.news_site"
             [href]="item.url"
             target="_blank"
-            >{{ item.newsSite }}</a
+            >{{ item.news_site }}</a
           >
         </div>
 
-        <p *ngIf="item.publishedAt">{{ item.publishedAt }}</p>
+        <p *ngIf="item.published_at">{{ item.published_at }}</p>
       </div>
     </div>
   </article>

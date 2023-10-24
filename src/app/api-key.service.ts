@@ -5,15 +5,15 @@ import { Injectable } from '@angular/core';
 })
 export class ApiKeyService {
 
-  private apikey: string = '';
+  private apiKey: string = '0fu6kxm8VJ28tAbk0iRAfazBSiqBW5v344fYDIiR';
 
   constructor() { }
 
   setApiKey(key: string): void {
-    this.apikey = key;
+    this.apiKey = key;
   }
 
   getApiKey(): string {
-    return this.apikey;
+    return this.apiKey;
   }
 }

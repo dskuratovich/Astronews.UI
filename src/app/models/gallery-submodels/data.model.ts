@@ -1,10 +1,10 @@
 export interface DataModel {
     center: string;
-    dateCreated: any;
+    date_created: any;
     description: string;
     keywords: string[];
-    mediaType: string;
-    nasaId: string;
+    media_type: string;
+    nasa_id: string;
     title: string;
     album: string[];
 }
