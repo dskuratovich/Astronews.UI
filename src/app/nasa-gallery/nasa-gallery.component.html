@@ -1,7 +1,7 @@
 <section class="container content"
 infiniteScroll
-[infiniteScrollDistance]="2"
-[infiniteScrollThrottle]="50"
+[infiniteScrollDistance]="4"
+[infiniteScrollThrottle]="200"
 (scrolled)="onScrollDown()">
     <article class="tile" *ngFor="let item of data">
         <div class="tile-content" *ngIf="item.links && item.data[0]">

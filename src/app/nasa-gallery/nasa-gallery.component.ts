@@ -29,7 +29,6 @@ export class NasaGalleryComponent implements OnInit {
     this.apiCaller.getNasaGallery(url).subscribe({
       next: (v) => {
         this.data = [...this.data, ...v.collection.items];
-        console.log(this.data);
         for (let link of v.collection.links) {
           if (link.prompt == 'Next') {
             this.promptService.LibraryNext = link.href;

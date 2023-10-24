@@ -11,10 +11,11 @@
     <nav class="nav-menu">
       <ul class="flex-container nav-link-list">
         <li>
-          <a class="nav-link" routerLink="/News">News</a>
+          <a class="nav-link" routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }" routerLink="/News">News</a>
         </li>
         <li class="dropdown">
-          <a class="nav-link" routerLink="/MarsPhotos">Mars</a>
+          <a class="nav-link" routerLinkActive="active-link" routerLink="/MarsPhotos">Mars</a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" routerLink="">Curiosity</a></li>
             <li><a class="nav-link" routerLink="">Opportunity</a></li>
@@ -22,10 +23,12 @@
           </ul>
         </li>
         <li>
-          <a class="nav-link" routerLink="/NasaGallery">NASA</a>
+          <a class="nav-link" routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }" routerLink="/NasaGallery">NASA</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/APOD">APOD</a>
+          <a class="nav-link" routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }" routerLink="/APOD">APOD</a>
         </li>
       </ul>
     </nav>

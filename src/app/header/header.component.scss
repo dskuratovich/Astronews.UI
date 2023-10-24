@@ -17,8 +17,18 @@ ul {
   align-items: center;
 }
 
+.active-link {
+  color: var(--second-link-hover-color);
+  border-bottom: 2px solid var(--second-link-hover-color);
+}
+
 .nav-link-list > li:not(:last-child) {
   margin-right: 15px;
+}
+
+.nav-link-list a {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .logo-link {
@@ -48,6 +58,7 @@ margin-right: 20px;
 .nav-link:focus {
   color: var(--second-link-hover-color);
   transition: color 300ms;
+  border-bottom: 2px solid var(--second-link-hover-color);
 }
 
 .dropdown {

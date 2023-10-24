@@ -5,11 +5,7 @@
   [infiniteScrollThrottle]="50"
   (scrolled)="onScrollDown()"
 >
-<section>
-  <button type="button" (click)="toggleSort()">Title</button>
-</section>
-
-  <article class="tile" *ngFor="let item of sortedData">
+  <article class="tile" *ngFor="let item of data">
     <div class="tile-content" *ngIf="item.image_url && item.title">
       <h2>{{ item.title }}</h2>
       <img [src]="item.image_url" />
