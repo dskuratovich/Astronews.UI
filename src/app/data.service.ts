@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { MarsModel } from './models/mars.model';
+import { MarsModel, MarsRootModel } from './models/mars.model';
 import { ApodModel } from './models/apod.model';
 import { NewsRootModel } from './models/news.root.model';
 import { GalleryRootModel } from './models/gallery.root.model';
@@ -42,39 +42,27 @@ export class DataService {
     return this.http.get<GalleryRootModel>(url).pipe(catchError(this.handleError));
   }
 
-  getCuriosityMarsPhotos(sol: number, url: string): Observable<MarsModel[]> {
+  getCuriosityMarsPhotos(sol: number): Observable<MarsRootModel> {
     let apiKey = this.apiKeyService.getApiKey();
-    if(!url) {
-          let requestUrl = this.marsCuriosityEndpoint.concat(`?sol=${sol}&api_key=${apiKey}`);
-    return this.http.get<MarsModel[]>(requestUrl).pipe(catchError(this.handleError));
-
-    }
-    return this.http.get<MarsModel[]>(url).pipe(catchError(this.handleError));
+    let requestUrl = this.marsCuriosityEndpoint.concat(`?sol=${sol}&api_key=${apiKey}`);
+    return this.http.get<MarsRootModel>(requestUrl).pipe(catchError(this.handleError));
   }
 
-  getOpportunityMarsPhotos(sol: number, url: string): Observable<MarsModel[]> {
+  getOpportunityMarsPhotos(sol: number): Observable<MarsRootModel> {
     let apiKey = this.apiKeyService.getApiKey();
-    if(!url) {
-        let requestUrl = this.marsOpportunityEndpoint.concat(`?sol=${sol}&api_key=${apiKey}`);
-    return this.http.get<MarsModel[]>(requestUrl).pipe(catchError(this.handleError));
-  
-    }
-    return this.http.get<MarsModel[]>(url).pipe(catchError(this.handleError));
+    let requestUrl = this.marsOpportunityEndpoint.concat(`?sol=${sol}&api_key=${apiKey}`);
+    return this.http.get<MarsRootModel>(requestUrl).pipe(catchError(this.handleError));
   }
 
-  getSpiritMarsPhotos(sol: number, url: string): Observable<MarsModel[]> {
+  getSpiritMarsPhotos(sol: number): Observable<MarsRootModel> {
     let apiKey = this.apiKeyService.getApiKey();
-    if(!url) {
-          let requestUrl = this.marsSpiritEndpoint.concat(`?sol=${sol}&api_key=${apiKey}`);
-    return this.http.get<MarsModel[]>(requestUrl).pipe(catchError(this.handleError));
-
-    }
-    return this.http.get<MarsModel[]>(url).pipe(catchError(this.handleError));
+    let requestUrl = this.marsSpiritEndpoint.concat(`?sol=${sol}&api_key=${apiKey}`);
+    return this.http.get<MarsRootModel>(requestUrl).pipe(catchError(this.handleError));
   }
 
   getApods(url: string): Observable<ApodModel[]> {
-    if(!url) {
-         return this.http.get<ApodModel[]>(this.apodEndpoint).pipe(catchError(this.handleError));
+    if (!url) {
+      return this.http.get<ApodModel[]>(this.apodEndpoint).pipe(catchError(this.handleError));
     }
     return this.http.get<ApodModel[]>(url).pipe(catchError(this.handleError));
   }
@@ -84,6 +72,4 @@ export class DataService {
 
     return throwError(() => new Error('Couldn\'t retrieve data; please try again later.'));
   }
-
-
 }

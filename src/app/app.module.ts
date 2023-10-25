@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './news/news.component';
-import { MarsPhotosComponent } from './mars-photos/mars-photos.component';
+import { MarsPhotosCuriosityComponent } from './mars-photos-curiosity/mars-photos-curiosity.component';
 import { NasaGalleryComponent } from './nasa-gallery/nasa-gallery.component';
 import { APODComponent } from './apod/apod.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -15,6 +15,8 @@ import { HeaderComponent } from './header/header.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SortPipe } from './shared/sort.pipe';
+import { MarsPhotosOpportunityComponent } from './mars-photos-opportunity/mars-photos-opportunity.component';
+import { MarsPhotosSpiritComponent } from './mars-photos-spirit/mars-photos-spirit.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { SortPipe } from './shared/sort.pipe';
     FooterComponent,
     HeaderComponent,
     NewsComponent,
-    MarsPhotosComponent,
+    MarsPhotosCuriosityComponent,
     NasaGalleryComponent,
     APODComponent,
     ErrorComponent,
-    SortPipe
+    SortPipe,
+    MarsPhotosOpportunityComponent,
+    MarsPhotosSpiritComponent
   ],
   imports: [
     BrowserModule,

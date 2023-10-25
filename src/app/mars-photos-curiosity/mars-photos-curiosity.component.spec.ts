@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MarsPhotosComponent } from './mars-photos.component';
+import { MarsPhotosCuriosityComponent } from './mars-photos-curiosity.component';
 
 describe('MarsPhotosComponent', () => {
-  let component: MarsPhotosComponent;
-  let fixture: ComponentFixture<MarsPhotosComponent>;
+  let component: MarsPhotosCuriosityComponent;
+  let fixture: ComponentFixture<MarsPhotosCuriosityComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MarsPhotosComponent]
+      declarations: [MarsPhotosCuriosityComponent]
     });
-    fixture = TestBed.createComponent(MarsPhotosComponent);
+    fixture = TestBed.createComponent(MarsPhotosCuriosityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

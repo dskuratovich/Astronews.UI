@@ -4,8 +4,17 @@
       <div class="flex-container">
         <h5>Quick links</h5>
         <ul class="flex-container footer-list">
-          <li><a routerLink="/News">News</a></li>
-          <li><a routerLink="/MarsPhotos">Mars</a></li>
+          <li>
+            <a
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLink="/News"
+              >News</a
+            >
+          </li>
+          <li><a routerLink="/MarsPhotos/Curiosity">Mars/Curiosity</a></li>
+          <li><a routerLink="/MarsPhotos/Opportunity">Mars/Opportunity</a></li>
+          <li><a routerLink="/MarsPhotos/Spirit">Mars/Spirit</a></li>
           <li><a routerLink="/NasaGallery">NASA</a></li>
           <li><a routerLink="/APOD">APOD</a></li>
         </ul>

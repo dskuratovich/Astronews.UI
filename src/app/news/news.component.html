@@ -2,7 +2,7 @@
   class="container content"
   infiniteScroll
   [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="50"
+  [infiniteScrollThrottle]="100"
   (scrolled)="onScrollDown()"
 >
   <article class="tile" *ngFor="let item of data">
