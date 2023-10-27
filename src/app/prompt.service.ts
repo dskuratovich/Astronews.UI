@@ -39,13 +39,6 @@ export class PromptService {
   public set MarsSpiritNext(value: string) {
     this._marsSpiritNext = value;
   }
-  private _apodNext: string = '';
-  public get ApodNext(): string {
-    return this._apodNext;
-  }
-  public set ApodNext(value: string) {
-    this._apodNext = value;
-  }
 
   private _libraryPrev: string = '';
   public get LibraryPrev(): string {

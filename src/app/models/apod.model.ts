@@ -3,9 +3,9 @@ export interface ApodModel{
     copyright: string;
     date: string;
     explanation: string;
-    hdUrl: string;
-    mediaType: string;
-    serviceVersion: string;
+    hdurl: string;
+    media_type: string;
+    service_version: string;
     title: string;
     url: string;
 }

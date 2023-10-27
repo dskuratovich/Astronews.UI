@@ -1,16 +1,33 @@
-<div>
-    <div *ngFor="let item of data">
-        <div *ngIf="item.url && item.title">
-            <h4>{{item.title}}</h4>
-            <div *ngIf="item.explanation">
-                <span>{{item.explanation}}</span>
-            </div>
-            <img [src]="item.url">
-            <div>
-                <p>{{item.copyright}}</p>
-                <p>{{item.date}}</p>
-                <a [href]="item.hdUrl" target="_blank">HD image</a>
-            </div>
-        </div>
+<section
+  class="container content"
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="200"
+  (scrolled)="onScrollDown()"
+>
+  <article *ngFor="let item of data">
+    <div class="apod-image-card" *ngIf="item.url && item.title">
+      <h2 class="image-title">{{ item.title }}</h2>
+      <p class="image-explanation">{{ item.explanation }}</p>
+      <div class="video-container" *ngIf="isYouTubeLink(item.url)">
+        <iframe
+          [src]="getSafeUrl(item.url)"
+          allowfullscreen="true"
+          referrerpolicy="no-referrer"
+          frameborder="0"
+        ></iframe>
+      </div>
+      <img class="image" *ngIf="!isYouTubeLink(item.url)" [src]="item.url" />
+      <div>
+        <p class="image-copyright">{{ item.copyright }}</p>
+        <p class="image-date">{{ item.date }}</p>
+        <a
+          class="hd-link"
+          *ngIf="!isYouTubeLink(item.url)"
+          [href]="item.hdurl"
+          target="_blank"
+          >HD image</a>
+      </div>
     </div>
-</div>
+  </article>
+</section>

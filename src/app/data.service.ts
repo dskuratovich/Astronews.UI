@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { MarsModel, MarsRootModel } from './models/mars.model';
+import { MarsRootModel } from './models/mars.model';
 import { ApodModel } from './models/apod.model';
 import { NewsRootModel } from './models/news.root.model';
 import { GalleryRootModel } from './models/gallery.root.model';
@@ -60,11 +60,10 @@ export class DataService {
     return this.http.get<MarsRootModel>(requestUrl).pipe(catchError(this.handleError));
   }
 
-  getApods(url: string): Observable<ApodModel[]> {
-    if (!url) {
-      return this.http.get<ApodModel[]>(this.apodEndpoint).pipe(catchError(this.handleError));
-    }
-    return this.http.get<ApodModel[]>(url).pipe(catchError(this.handleError));
+  getApods(startDate: string, endDate: string): Observable<ApodModel[]> {
+    let apiKey = this.apiKeyService.getApiKey();
+    let requestUrl = this.apodEndpoint.concat(`?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`);
+    return this.http.get<ApodModel[]>(requestUrl).pipe(catchError(this.handleError));
   }
 
   private handleError(error: any): Observable<never> {

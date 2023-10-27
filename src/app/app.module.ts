@@ -17,6 +17,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SortPipe } from './shared/sort.pipe';
 import { MarsPhotosOpportunityComponent } from './mars-photos-opportunity/mars-photos-opportunity.component';
 import { MarsPhotosSpiritComponent } from './mars-photos-spirit/mars-photos-spirit.component';
+import { ReversePipe } from './reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MarsPhotosSpiritComponent } from './mars-photos-spirit/mars-photos-spir
     ErrorComponent,
     SortPipe,
     MarsPhotosOpportunityComponent,
-    MarsPhotosSpiritComponent
+    MarsPhotosSpiritComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
