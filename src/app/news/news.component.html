@@ -5,7 +5,7 @@
   [infiniteScrollThrottle]="100"
   (scrolled)="onScrollDown()"
 >
-  <article class="tile" *ngFor="let item of data">
+  <article class="tile" *ngFor="let item of filteredData">
     <div class="tile-content" *ngIf="item.image_url && item.title">
       <h2>{{ item.title }}</h2>
       <img [src]="item.image_url" />

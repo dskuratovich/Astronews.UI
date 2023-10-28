@@ -11,27 +11,67 @@
     <nav class="nav-menu">
       <ul class="flex-container nav-link-list">
         <li>
-          <a class="nav-link" routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{ exact: true }" routerLink="/News">News</a>
+          <a
+            class="nav-link"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/News"
+            >News</a
+          >
         </li>
         <li class="dropdown">
-          <a class="nav-link" routerLinkActive="active-link" routerLink="/MarsPhotos/Curiosity">Mars</a>
+          <a
+            class="nav-link"
+            routerLinkActive="active-link"
+            routerLink="/MarsPhotos/Curiosity"
+            >Mars</a
+          >
           <ul class="dropdown-menu">
-            <li><a class="nav-link" routerLink="/MarsPhotos/Curiosity">Curiosity</a></li>
-            <li><a class="nav-link" routerLink="/MarsPhotos/Opportunity">Opportunity</a></li>
-            <li><a class="nav-link" routerLink="/MarsPhotos/Spirit">Spirit</a></li>
+            <li>
+              <a class="nav-link" routerLink="/MarsPhotos/Curiosity"
+                >Curiosity</a
+              >
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/MarsPhotos/Opportunity"
+                >Opportunity</a
+              >
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/MarsPhotos/Spirit">Spirit</a>
+            </li>
           </ul>
         </li>
         <li>
-          <a class="nav-link" routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{ exact: true }" routerLink="/NasaGallery">NASA</a>
+          <a
+            class="nav-link"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/NasaGallery"
+            >NASA</a
+          >
         </li>
         <li>
-          <a class="nav-link" routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{ exact: true }" routerLink="/APOD">APOD</a>
+          <a
+            class="nav-link"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/APOD"
+            >APOD</a
+          >
         </li>
       </ul>
     </nav>
+
+    <div>
+      <input
+        type="text"
+        name="searchTerm"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="searchSubject.next(searchTerm)"
+        placeholder="Search..."
+      />
+    </div>
 
     <div class="theme-switcher">
       <label class="switch">

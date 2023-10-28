@@ -4,6 +4,8 @@ import { DataService } from '../data.service';
 import { ErrorService } from '../error.service';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SearchService } from '../search.service';
+import { parseSearchTerm } from '../search.util';
 
 @Component({
   selector: 'app-apod',
@@ -12,11 +14,36 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class APODComponent implements OnInit {
   data: ApodModel[] = [];
+  filteredData: ApodModel[] = [];
   date: Date;
 
   constructor(private apiCaller: DataService,
     private errorService: ErrorService, private router: Router,
-    private sanitizer: DomSanitizer) { this.date = new Date(); }
+    private sanitizer: DomSanitizer, private searchService: SearchService) {
+    this.date = new Date();
+    this.searchService.searchTerm$.subscribe(term => {
+      const { property, value } = parseSearchTerm(term);
+      if (property) {
+        switch (property) {
+          case "t":
+            this.filteredData = this.data.filter(item => item.title.includes(value));
+            break;
+          case "e":
+            this.filteredData = this.data.filter(item => item.explanation.includes(value));
+            break;
+          case "c":
+            this.filteredData = this.data.filter(item => item.copyright.includes(value));
+            break;
+          case "d":
+            this.filteredData = this.data.filter(item => item.date.includes(value));
+            break;
+          default:
+            this.filteredData = this.data;
+            break;
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {
     let yearEnd = this.convertDateToString(this.date);
