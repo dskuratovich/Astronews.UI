@@ -22,13 +22,13 @@ export class APODComponent implements OnInit {
     let yearEnd = this.convertDateToString(this.date);
     this.date.setMonth(this.date.getMonth() - 1)
     let yearStart = this.convertDateToString(this.date);
-    //this.date.setMonth(this.date.getMonth() + 1)
     this.apiCall(yearStart, yearEnd);
   }
 
   onScrollDown(): void {
+    this.date.setDate(this.date.getDate() - 1);
     let yearEnd = this.convertDateToString(this.date);
-    this.date.setMonth(this.date.getMonth() - 1)
+    this.date.setMonth(this.date.getMonth() - 1);
     let yearStart = this.convertDateToString(this.date);
     this.apiCall(yearStart, yearEnd);
   }
@@ -36,7 +36,7 @@ export class APODComponent implements OnInit {
   apiCall(yearStart: string, yearEnd: string): void {
     this.apiCaller.getApods(yearStart, yearEnd).subscribe({
       next: (v) => {
-        this.data = [...this.data, ...v];//implement normal list concatenantion and reversing of displayed list.
+        this.data = [...this.data, ...v];
       },
       error: (e) => {
         this.errorService.sendError('Error occured during fetching the data. Please, try again shortly.');
