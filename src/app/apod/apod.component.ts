@@ -23,6 +23,9 @@ export class APODComponent implements OnInit {
     this.date = new Date();
     this.searchService.searchTerm$.subscribe(term => {
       const { property, value } = parseSearchTerm(term);
+      if (value == '') {
+        this.filteredData = this.data;
+      }
       if (property) {
         switch (property) {
           case "t":

@@ -29,4 +29,9 @@ export class HeaderComponent implements OnInit {
       this.isLightTheme ? 'light' : 'dark'
     );
   }
+
+  clearSearch() {
+    this.searchService.setSearchTerm('');
+    this.searchTerm = '';
+  }
 }

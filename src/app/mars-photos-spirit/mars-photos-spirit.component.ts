@@ -18,29 +18,32 @@ export class MarsPhotosSpiritComponent implements OnInit {
 
   constructor(private apiCaller: DataService, private errorService: ErrorService,
     private router: Router, private searchService: SearchService) {
-      this.searchService.searchTerm$.subscribe(term => {
-        const { property, value } = parseSearchTerm(term);
-        if(property){
-          switch(property){
-            case "s":
-              this.filteredData = this.data.filter(item => item.sol.toString() == value);
-              break;
-            case "cn":
-              this.filteredData = this.data.filter(item => item.camera.name.includes(value) || item.camera.full_name.includes(value));
-              break;
-            case "ed":
-              this.filteredData = this.data.filter(item => item.earth_date.includes(value));
-              break;
-            case "st":
-              this.filteredData =this.data.filter(item => item.rover.status.includes(value));
-              break;
-            default:
-              this.filteredData = this.data;
-              break;
-          }
+    this.searchService.searchTerm$.subscribe(term => {
+      const { property, value } = parseSearchTerm(term);
+      if (value == '') {
+        this.filteredData = this.data;
+      }
+      if (property) {
+        switch (property) {
+          case "s":
+            this.filteredData = this.data.filter(item => item.sol.toString() == value);
+            break;
+          case "cn":
+            this.filteredData = this.data.filter(item => item.camera.name.includes(value) || item.camera.full_name.includes(value));
+            break;
+          case "ed":
+            this.filteredData = this.data.filter(item => item.earth_date.includes(value));
+            break;
+          case "st":
+            this.filteredData = this.data.filter(item => item.rover.status.includes(value));
+            break;
+          default:
+            this.filteredData = this.data;
+            break;
         }
-      });
-    }
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.apiCall();

@@ -21,6 +21,9 @@ export class NasaGalleryComponent implements OnInit {
     private promptService: PromptService, private searchService: SearchService) {
     this.searchService.searchTerm$.subscribe(term => {
       const { property, value } = parseSearchTerm(term);
+      if (value == '') {
+        this.filteredData = this.data;
+      }
       if (property) {
         switch (property) {
           case "t":
