@@ -6,6 +6,11 @@ footer {
   width: 100vw;
 }
 
+.active-link {
+  color: var(--second-link-hover-color);
+  border-bottom: 2px solid var(--second-link-hover-color);
+}
+
 .nav-footer-list a {
   padding-top: 10px;
   padding-bottom: 10px;
