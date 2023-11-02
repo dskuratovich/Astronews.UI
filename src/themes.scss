@@ -1,7 +1,9 @@
 [data-theme="dark"] {
   /*Common*/
-  --button-color: #00adb5;
-  --highlight-color: #eee;
+  --button-bg-color: #00adb5;
+  --button-color: #fff;
+  --button-bg-color-hover: #008a90;
+  --highlight-color: #bdbdbd;
   /*------------------------------*/
 
   /*Body*/
@@ -22,8 +24,10 @@
 
 [data-theme="light"] {
   /*Common*/
-  --button-color: #333c4a;
-  --highlight-color: #495664;
+  --button-bg-color: #333c4a;
+  --button-color: #eee;
+  --button-bg-color-hover: #1e232b;
+  --highlight-color: #3e4955;
   /*------------------------------*/
 
   /*Body*/
