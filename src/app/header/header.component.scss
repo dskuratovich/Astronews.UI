@@ -44,7 +44,7 @@ ul {
 }
 
 .logo-link > img {
-margin-right: 20px;
+  margin-right: 20px;
 }
 
 .nav-menu {
@@ -73,7 +73,7 @@ margin-right: 20px;
   background-color: var(--main-bg-color);
   min-width: 140px;
   z-index: 1;
-  border: 1px solid var(--highlight-color)
+  border: 1px solid var(--highlight-color);
 }
 
 .dropdown-menu li {
@@ -147,7 +147,7 @@ margin-right: 20px;
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: var(--highlight-color);
+    background-color: #eee;
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }

@@ -1,8 +1,9 @@
 div {
-    display: flex;
-    justify-content: center; /* Centers content horizontally */
-    align-items: center;     /* Centers content vertically */
-    height: 53vh;           /* Takes up the full viewport height */
-    width: 100vw;            /* Takes up the full viewport width */
-  }
-  
+  padding-top: 150px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 82vh;
+  width: 100vw;
+}

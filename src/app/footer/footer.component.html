@@ -1,36 +1,46 @@
 <footer>
   <div>
     <div>
-      <div class="flex-container">
+      <nav class="flex-container">
         <h5>Quick links</h5>
-        <ul class="flex-container footer-list">
+        <ul class="flex-container nav-footer-list">
           <li>
             <a
+              class="nav-link"
               routerLinkActive="active-link"
               [routerLinkActiveOptions]="{ exact: true }"
               routerLink="/News"
               >News</a
             >
           </li>
-          <li><a routerLink="/MarsPhotos/Curiosity">Mars/Curiosity</a></li>
-          <li><a routerLink="/MarsPhotos/Opportunity">Mars/Opportunity</a></li>
-          <li><a routerLink="/MarsPhotos/Spirit">Mars/Spirit</a></li>
-          <li><a routerLink="/NasaGallery">NASA</a></li>
-          <li><a routerLink="/APOD">APOD</a></li>
+          <li>
+            <a class="nav-link" routerLink="/MarsPhotos/Curiosity">Curiosity</a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="/MarsPhotos/Opportunity"
+              >Opportunity</a
+            >
+          </li>
+          <li>
+            <a class="nav-link" routerLink="/MarsPhotos/Spirit">Spirit</a>
+          </li>
+          <li><a class="nav-link" routerLink="/NasaGallery">NASA</a></li>
+          <li><a class="nav-link" routerLink="/APOD">APOD</a></li>
         </ul>
-      </div>
+      </nav>
       <div class="flex-container footer-feedback">
         <h5>Feedback</h5>
         <ul class="flex-container footer-list">
           <li>
             <a
+            class="nav-link"
               href="https://github.com/Needlide/Astronews.UI"
               target="_blank"
               rel="noopener noreferrer"
               ><i aria-hidden="true"></i
             ></a>
           </li>
-          <li><a href="mailto:example@gmail.com">example@gmail.com</a></li>
+          <li><a class="nav-link" href="mailto:example@gmail.com">example@gmail.com</a></li>
         </ul>
       </div>
     </div>
