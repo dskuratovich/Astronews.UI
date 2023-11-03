@@ -20,6 +20,7 @@ import { MarsPhotosOpportunityComponent } from './mars-photos-opportunity/mars-p
 import { MarsPhotosSpiritComponent } from './mars-photos-spirit/mars-photos-spirit.component';
 import { DataSortPipe } from './data-sort.pipe';
 import { BackToTopComponent } from './back-to-top/back-to-top.component';
+import { DateFormatPipe } from './date-format.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BackToTopComponent } from './back-to-top/back-to-top.component';
     MarsPhotosOpportunityComponent,
     MarsPhotosSpiritComponent,
     DataSortPipe,
-    BackToTopComponent
+    BackToTopComponent,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule,

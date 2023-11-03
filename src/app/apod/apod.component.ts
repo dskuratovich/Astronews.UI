@@ -67,6 +67,7 @@ export class APODComponent implements OnInit {
     this.apiCaller.getApods(yearStart, yearEnd).subscribe({
       next: (v) => {
         this.data = [...this.data, ...v];
+        this.filteredData = this.data;
       },
       error: (e) => {
         this.errorService.sendError('Error occured during fetching the data. Please, try again shortly.');

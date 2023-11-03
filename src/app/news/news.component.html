@@ -23,7 +23,7 @@
           >
         </div>
 
-        <p *ngIf="item.published_at">{{ item.published_at }}</p>
+        <p *ngIf="item.published_at">{{ item.published_at | dateFormat }}</p>
       </div>
     </div>
   </article>
