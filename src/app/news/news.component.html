@@ -6,13 +6,12 @@
   (scrolled)="onScrollDown()"
 >
   <article class="tile" *ngFor="let item of filteredData">
-    <div class="tile-content" *ngIf="item.image_url && item.title">
-      <h2>{{ item.title }}</h2>
-      <img [src]="item.image_url" />
+      <h2 *ngIf="item.image_url && item.title" style="text-align: center">{{ item.title }}</h2>
+      <img *ngIf="item.image_url && item.title" [src]="item.image_url" />
 
-      <div *ngIf="item.summary || item.news_site || item.published_at">
-        <p class="tile-summary" *ngIf="item.summary">{{ item.summary }}</p>
+      <p class="tile-summary" *ngIf="item.summary">{{ item.summary }}</p>
 
+      <div>
         <div class="link-wrapper">
           <a
             class="tile-link"
@@ -25,6 +24,5 @@
 
         <p *ngIf="item.published_at">{{ item.published_at | dateFormat }}</p>
       </div>
-    </div>
   </article>
 </section>

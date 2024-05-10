@@ -9,9 +9,14 @@ html {
 body {
   text-decoration: none;
   text-transform: none;
-  font-size: 16px;
+  //font-size: 16px;
+  font-size: 0.9vw;
   font-weight: 400;
-  font-family: sans-serif;
+  font-style: normal;
+  //font-family: "Roboto", sans-serif;
+  //font-family: "Noto Sans", sans-serif;
+  //font-family: "PT Sans", sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   background: var(--main-bg-color);
   -ms-overflow-style: none;
 }
@@ -29,6 +34,7 @@ a {
 }
 
 img {
+  max-width: 100%;
   display: block;
 }
 

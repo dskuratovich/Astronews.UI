@@ -32,7 +32,7 @@
 
 @media (max-width: 1920px) {
   .content {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
   }
 }
@@ -51,10 +51,20 @@
   }
 }
 
+//TODO: Add darker backgrounds with rounded corners for text elements on the tiles,
+//like in the title, summary, etc. And fix link colors on dark and light themes. Add a customized tiny scrollbar.
+//In code add ability for users to ban sources on their choice.
+
 .tile {
   max-width: 960px;
   border: 1px solid var(--main-text-color);
   border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+  gap: 20px;
 }
 
 .tile img {
@@ -62,11 +72,10 @@
   height: auto;
   display: block;
   border-radius: 7px;
-  margin-bottom: 15px;
 }
 
 .tile-summary {
-  margin-bottom: 20px;
+  margin-bottom: auto;
 }
 
 .link-wrapper {
@@ -79,12 +88,12 @@
   padding: 15px 15px 15px 0px;
 }
 
-.tile h2 {
-  margin-bottom: 20px;
-}
 
 .tile-content {
   padding: 10px;
+  height: 100%;
+
+  flex: 1;
 }
 
 a {
