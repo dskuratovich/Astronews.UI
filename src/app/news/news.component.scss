@@ -51,8 +51,8 @@
   }
 }
 
-//TODO: Add darker backgrounds with rounded corners for text elements on the tiles,
-//like in the title, summary, etc. And fix link colors on dark and light themes. Add a customized tiny scrollbar.
+//TODO: And fix link colors on dark and light themes.
+//Add a customized tiny scrollbar.
 //In code add ability for users to ban sources on their choice.
 
 .tile {
@@ -97,10 +97,10 @@
 }
 
 a {
-  color: var(--highlight-color);
+  color: var(--main-link-hover-color);
 }
 
 a:hover,
 a:focus {
-  color: var(--main-link-hover-color);
+  color: var(--highlight-color);
 }
