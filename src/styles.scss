@@ -3,13 +3,14 @@
 @import "themes";
 
 html {
-  scrollbar-width: none;
+  scrollbar-color: #393e46 #eee;
+  scrollbar-width: thin;
+  overflow-x: hidden;
 }
 
 body {
   text-decoration: none;
   text-transform: none;
-  //font-size: 16px;
   font-size: 0.9vw;
   font-weight: 400;
   font-style: normal;
@@ -18,11 +19,6 @@ body {
   //font-family: "PT Sans", sans-serif;
   font-family: "Source Sans 3", sans-serif;
   background: var(--main-bg-color);
-  -ms-overflow-style: none;
-}
-
-body::-webkit-scrollbar {
-  display: none;
 }
 
 ul {
