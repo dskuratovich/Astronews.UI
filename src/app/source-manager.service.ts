@@ -8,6 +8,18 @@ export class SourceManagerService {
 
   constructor() {}
 
+  getBannedSources(): string[] {
+    let jsonString: string | null = localStorage.getItem(this.Keyword);
+
+    let bannedSourcesList: string[] = [];
+
+    if (jsonString !== null) {
+      bannedSourcesList = JSON.parse(jsonString);
+    }
+
+    return bannedSourcesList;
+  }
+
   banSource(sourceName: string): void {
     let jsonString: string | null = localStorage.getItem(this.Keyword);
 
