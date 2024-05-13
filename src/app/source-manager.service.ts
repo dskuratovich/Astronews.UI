@@ -39,9 +39,9 @@ export class SourceManagerService {
 
     if (jsonString !== null) {
       let bannedSourcesList: string[] = JSON.parse(jsonString);
-  
+
       const indexToRemove = bannedSourcesList.indexOf(sourceName);
-      
+
       if (indexToRemove !== -1) {
         bannedSourcesList.splice(indexToRemove, 1);
         localStorage.setItem(this.Keyword, JSON.stringify(bannedSourcesList));
