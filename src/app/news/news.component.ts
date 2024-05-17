@@ -5,8 +5,9 @@ import { ErrorService } from '../error.service';
 import { Router } from '@angular/router';
 import { PromptService } from '../prompt.service';
 import { SearchService } from '../search.service';
-import { parseSearchTerm } from '../search.util';
-import { SourceManagerService } from '../source-manager.service';
+import { parseSearchTerm, parseSearchValue } from '../search.util';
+import { UrlBuilderService } from '../url-builder.service';
+import { CachingService } from '../caching.service';
 
 @Component({
   selector: 'app-news',
@@ -14,7 +15,6 @@ import { SourceManagerService } from '../source-manager.service';
   styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent implements OnInit {
-  data: NewsModel[] = [];
   filteredData: NewsModel[] = [];
 
   constructor(
@@ -23,45 +23,66 @@ export class NewsComponent implements OnInit {
     private router: Router,
     private promptService: PromptService,
     private searchService: SearchService,
-    private sourceService: SourceManagerService
+    private urlBuilder: UrlBuilderService,
+    private cacheService: CachingService
   ) {
     this.searchService.searchTerm$.subscribe((term) => {
       const { property, value } = parseSearchTerm(term);
-      if (value == '') {
-        this.filteredData = this.data;
-      }
-      if (property) {
-        switch (property) {
-          case 't':
-            this.filteredData = this.data.filter(
-              (item) => item.title && item.title.includes(value)
-            );
-            break;
-          case 'ns':
-            this.filteredData = this.data.filter(
-              (item) => item.news_site && item.news_site.includes(value)
-            );
-            break;
-          case 's':
-            this.filteredData = this.data.filter(
-              (item) => item.summary && item.summary.includes(value)
-            );
-            break;
-          case 'p':
-            this.filteredData = this.data.filter(
-              (item) => item.published_at && item.published_at.includes(value)
-            );
-            break;
-          default:
-            this.filteredData = this.data;
-            break;
+      if (!property) {
+        let cache = cacheService.get(value);
+
+        if (cache) {
+          this.filteredData = cache;
+        } else {
+          let url = urlBuilder.getNewsUrl(undefined, undefined, undefined, undefined, value);
+          this.clearApiCall(url, value);
         }
+      }
+      if (value == '') {
+        let cache = cacheService.get('news');
+
+        if (cache) {
+          this.filteredData = cache;
+        } else {
+          this.clearApiCall(this.urlBuilder.getNewsUrl(), 'news');
+        }
+      }
+      switch (property?.toLowerCase()) {
+        case 't':
+          let urlT = urlBuilder.getNewsUrl(undefined, undefined, undefined, undefined, undefined, undefined, parseSearchValue(value));
+          this.clearApiCall(urlT, value);
+          break;
+        case 'ns':
+          let urlNS = urlBuilder.getNewsUrl(undefined, parseSearchValue(value));
+          this.clearApiCall(urlNS, value);
+          break;
+        case 's':
+          let urlS = urlBuilder.getNewsUrl(undefined, undefined, undefined, undefined, undefined, parseSearchValue(value));
+          this.clearApiCall(urlS, value);
+          break;
+        case 'p':
+          let dates = parseSearchValue(value);
+          console.log(dates);
+          if (dates.length == 2) {
+            let urlP = urlBuilder.getNewsUrl(undefined, undefined, dates[0], dates[1]);
+            this.clearApiCall(urlP, value);
+          }
+          break;
+        default:
+          let cache = cacheService.get('news');
+
+          if (cache) {
+            this.filteredData = cache;
+          } else {
+            this.clearApiCall(this.urlBuilder.getNewsUrl(), 'news');
+          }
+            break;
       }
     });
   }
 
   ngOnInit(): void {
-    this.apiCall('');
+    this.apiCall(this.urlBuilder.getNewsUrl());
   }
 
   onScrollDown(): void {
@@ -71,10 +92,11 @@ export class NewsComponent implements OnInit {
   apiCall(url: string): void {
     this.apiCaller.getNews(url).subscribe({
       next: (v) => {
-        this.data = [...this.data, ...v.results];
-        this.data = this.filterData(this.data);
-        this.filteredData = this.data;
+        //this.data = [...this.data, ...v.results];
+       // this.filteredData = this.data;
+       this.filteredData = [...this.filteredData, ...v.results];
         this.promptService.NewsNext = v.next;
+        this.cacheService.set('news', this.filteredData);
       },
       error: (e) => {
         this.errorService.sendError(
@@ -85,9 +107,21 @@ export class NewsComponent implements OnInit {
     });
   }
 
-  filterData(data: NewsModel[]): NewsModel[] {
-    let sources = this.sourceService.getBannedSources();
-
-    return data.filter((news) => !sources.includes(news.news_site));
+  clearApiCall(url: string, key: string): void {
+    this.apiCaller.getNews(url).subscribe({
+      next: (v) => {
+        this.filteredData = v.results;
+        this.promptService.NewsNext = v.next;
+        this.cacheService.set(key, this.filteredData);
+      },
+      error: (e) => {
+        this.errorService.sendError(
+          'Error occured during fetching the data. Please, try again shortly.'
+        );
+        this.router.navigate(['/Error']);
+      },
+    });
   }
 }
+//Add a text element to the page when empty list is returned (for example when searching for specific news, but there is nothing to show)
+//Fix scrolldown

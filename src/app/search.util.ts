@@ -7,3 +7,6 @@ export function parseSearchTerm(term: string) {
     }
   }
   
+  export function parseSearchValue(value: string): string[] {
+    return value.split(',');
+  }
