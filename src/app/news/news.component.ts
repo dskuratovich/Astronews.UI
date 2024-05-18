@@ -34,7 +34,13 @@ export class NewsComponent implements OnInit {
         if (cache) {
           this.filteredData = cache;
         } else {
-          let url = urlBuilder.getNewsUrl(undefined, undefined, undefined, undefined, value);
+          let url = urlBuilder.getNewsUrl(
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            value
+          );
           this.clearApiCall(url, value);
         }
       }
@@ -49,7 +55,15 @@ export class NewsComponent implements OnInit {
       }
       switch (property?.toLowerCase()) {
         case 't':
-          let urlT = urlBuilder.getNewsUrl(undefined, undefined, undefined, undefined, undefined, undefined, parseSearchValue(value));
+          let urlT = urlBuilder.getNewsUrl(
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            parseSearchValue(value)
+          );
           this.clearApiCall(urlT, value);
           break;
         case 'ns':
@@ -57,16 +71,40 @@ export class NewsComponent implements OnInit {
           this.clearApiCall(urlNS, value);
           break;
         case 's':
-          let urlS = urlBuilder.getNewsUrl(undefined, undefined, undefined, undefined, undefined, parseSearchValue(value));
+          let urlS = urlBuilder.getNewsUrl(
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            parseSearchValue(value)
+          );
           this.clearApiCall(urlS, value);
           break;
         case 'p':
           let dates = parseSearchValue(value);
-          console.log(dates);
           if (dates.length == 2) {
-            let urlP = urlBuilder.getNewsUrl(undefined, undefined, dates[0], dates[1]);
+            let urlP = urlBuilder.getNewsUrl(
+              undefined,
+              undefined,
+              dates[0],
+              dates[1]
+            );
             this.clearApiCall(urlP, value);
           }
+          break;
+        case 'pb':
+          let urlPB = urlBuilder.getNewsUrl(
+            undefined,
+            undefined,
+            undefined,
+            value
+          );
+          this.clearApiCall(urlPB, value);
+          break;
+        case 'ba':
+          let urlPA = urlBuilder.getNewsUrl(undefined, undefined, value);
+          this.clearApiCall(urlPA, value);
           break;
         default:
           let cache = cacheService.get('news');
@@ -76,7 +114,7 @@ export class NewsComponent implements OnInit {
           } else {
             this.clearApiCall(this.urlBuilder.getNewsUrl(), 'news');
           }
-            break;
+          break;
       }
     });
   }
@@ -93,8 +131,8 @@ export class NewsComponent implements OnInit {
     this.apiCaller.getNews(url).subscribe({
       next: (v) => {
         //this.data = [...this.data, ...v.results];
-       // this.filteredData = this.data;
-       this.filteredData = [...this.filteredData, ...v.results];
+        // this.filteredData = this.data;
+        this.filteredData = [...this.filteredData, ...v.results];
         this.promptService.NewsNext = v.next;
         this.cacheService.set('news', this.filteredData);
       },
