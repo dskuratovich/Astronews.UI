@@ -6,9 +6,13 @@ html {
   scrollbar-color: #393e46 #eee;
   scrollbar-width: thin;
   overflow-x: hidden;
+  height: 100%;
+  margin: 0;
 }
 
 body {
+  height: 100%;
+  margin: 0;
   text-decoration: none;
   text-transform: none;
   font-size: 0.9vw;

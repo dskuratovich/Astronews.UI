@@ -120,7 +120,7 @@ export class NewsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiCall(this.urlBuilder.getNewsUrl());
+    //this.apiCall(this.urlBuilder.getNewsUrl());
   }
 
   onScrollDown(): void {
