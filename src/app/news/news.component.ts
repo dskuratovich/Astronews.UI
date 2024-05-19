@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NewsModel } from '../models/news.model';
 import { DataService } from '../data.service';
 import { ErrorService } from '../error.service';
@@ -14,7 +14,7 @@ import { CachingService } from '../caching.service';
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent {
   filteredData: NewsModel[] = [];
 
   constructor(
@@ -28,7 +28,7 @@ export class NewsComponent implements OnInit {
   ) {
     this.searchService.searchTerm$.subscribe((term) => {
       const { property, value } = parseSearchTerm(term);
-      if (!property) {
+      if (property === null && value != '') {
         let cache = cacheService.get(value);
 
         if (cache) {
@@ -44,7 +44,7 @@ export class NewsComponent implements OnInit {
           this.clearApiCall(url, value);
         }
       }
-      if (value == '') {
+      if (property === null && value == '') {
         let cache = cacheService.get('news');
 
         if (cache) {
@@ -53,77 +53,79 @@ export class NewsComponent implements OnInit {
           this.clearApiCall(this.urlBuilder.getNewsUrl(), 'news');
         }
       }
-      switch (property?.toLowerCase()) {
-        case 't':
-          let urlT = urlBuilder.getNewsUrl(
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            parseSearchValue(value)
-          );
-          this.clearApiCall(urlT, value);
-          break;
-        case 'ns':
-          let urlNS = urlBuilder.getNewsUrl(undefined, parseSearchValue(value));
-          this.clearApiCall(urlNS, value);
-          break;
-        case 's':
-          let urlS = urlBuilder.getNewsUrl(
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            parseSearchValue(value)
-          );
-          this.clearApiCall(urlS, value);
-          break;
-        case 'p':
-          let dates = parseSearchValue(value);
-          if (dates.length == 2) {
-            let urlP = urlBuilder.getNewsUrl(
+      if (property != null && value != '') {
+        switch (property?.toLowerCase()) {
+          case 't':
+            let urlT = urlBuilder.getNewsUrl(
               undefined,
               undefined,
-              dates[0],
-              dates[1]
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              parseSearchValue(value)
             );
-            this.clearApiCall(urlP, value);
-          }
-          break;
-        case 'pb':
-          let urlPB = urlBuilder.getNewsUrl(
-            undefined,
-            undefined,
-            undefined,
-            value
-          );
-          this.clearApiCall(urlPB, value);
-          break;
-        case 'ba':
-          let urlPA = urlBuilder.getNewsUrl(undefined, undefined, value);
-          this.clearApiCall(urlPA, value);
-          break;
-        default:
-          let cache = cacheService.get('news');
+            this.clearApiCall(urlT, value);
+            break;
+          case 'ns':
+            let urlNS = urlBuilder.getNewsUrl(
+              undefined,
+              parseSearchValue(value)
+            );
+            this.clearApiCall(urlNS, value);
+            break;
+          case 's':
+            let urlS = urlBuilder.getNewsUrl(
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              parseSearchValue(value)
+            );
+            this.clearApiCall(urlS, value);
+            break;
+          case 'p':
+            let dates = parseSearchValue(value);
+            if (dates.length == 2) {
+              let urlP = urlBuilder.getNewsUrl(
+                undefined,
+                undefined,
+                dates[0],
+                dates[1]
+              );
+              this.clearApiCall(urlP, value);
+            }
+            break;
+          case 'pb':
+            let urlPB = urlBuilder.getNewsUrl(
+              undefined,
+              undefined,
+              undefined,
+              value
+            );
+            this.clearApiCall(urlPB, value);
+            break;
+          case 'ba':
+            let urlPA = urlBuilder.getNewsUrl(undefined, undefined, value);
+            this.clearApiCall(urlPA, value);
+            break;
+          default:
+            let cache = cacheService.get('news');
 
-          if (cache) {
-            this.filteredData = cache;
-          } else {
-            this.clearApiCall(this.urlBuilder.getNewsUrl(), 'news');
-          }
-          break;
+            if (cache) {
+              this.filteredData = cache;
+            } else {
+              this.clearApiCall(this.urlBuilder.getNewsUrl(), 'news');
+            }
+            break;
+        }
       }
     });
   }
 
-  ngOnInit(): void {
-    //this.apiCall(this.urlBuilder.getNewsUrl());
-  }
-
   onScrollDown(): void {
+    console.log('onScrollDown');
     this.apiCall(this.promptService.NewsNext);
   }
 
@@ -146,6 +148,7 @@ export class NewsComponent implements OnInit {
   }
 
   clearApiCall(url: string, key: string): void {
+    console.log('clearApiCall');
     this.apiCaller.getNews(url).subscribe({
       next: (v) => {
         this.filteredData = v.results;
@@ -161,5 +164,3 @@ export class NewsComponent implements OnInit {
     });
   }
 }
-//Add a text element to the page when empty list is returned (for example when searching for specific news, but there is nothing to show)
-//Fix scrolldown
