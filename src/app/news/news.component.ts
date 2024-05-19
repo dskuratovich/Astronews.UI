@@ -125,7 +125,6 @@ export class NewsComponent {
   }
 
   onScrollDown(): void {
-    console.log('onScrollDown');
     this.apiCall(this.promptService.NewsNext);
   }
 
@@ -148,7 +147,6 @@ export class NewsComponent {
   }
 
   clearApiCall(url: string, key: string): void {
-    console.log('clearApiCall');
     this.apiCaller.getNews(url).subscribe({
       next: (v) => {
         this.filteredData = v.results;
