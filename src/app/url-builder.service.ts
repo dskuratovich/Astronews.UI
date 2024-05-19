@@ -9,7 +9,7 @@ export class UrlBuilderService {
   constructor(private sourceManager: SourceManagerService) {}
 
   getNewsUrl(
-    limit: number = 16,//600,
+    limit: number = 600,
     source: string[] = [],
     published_after: string = '',
     published_before: string = '',
