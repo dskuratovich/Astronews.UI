@@ -15,7 +15,7 @@ import { CachingService } from '../caching.service';
   styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent {
-  filteredData: NewsModel[] = [];
+  data: NewsModel[] = [];
 
   constructor(
     private apiCaller: DataService,
@@ -32,7 +32,7 @@ export class NewsComponent {
         let cache = cacheService.get(value);
 
         if (cache) {
-          this.filteredData = cache;
+          this.data = cache;
         } else {
           let url = urlBuilder.getNewsUrl(
             undefined,
@@ -48,7 +48,7 @@ export class NewsComponent {
         let cache = cacheService.get('news');
 
         if (cache) {
-          this.filteredData = cache;
+          this.data = cache;
         } else {
           this.clearApiCall(this.urlBuilder.getNewsUrl(), 'news');
         }
@@ -114,7 +114,7 @@ export class NewsComponent {
             let cache = cacheService.get('news');
 
             if (cache) {
-              this.filteredData = cache;
+              this.data = cache;
             } else {
               this.clearApiCall(this.urlBuilder.getNewsUrl(), 'news');
             }
@@ -133,9 +133,9 @@ export class NewsComponent {
       next: (v) => {
         //this.data = [...this.data, ...v.results];
         // this.filteredData = this.data;
-        this.filteredData = [...this.filteredData, ...v.results];
+        this.data = [...this.data, ...v.results];
         this.promptService.NewsNext = v.next;
-        this.cacheService.set('news', this.filteredData);
+        this.cacheService.set('news', this.data);
       },
       error: (e) => {
         this.errorService.sendError(
@@ -149,9 +149,9 @@ export class NewsComponent {
   clearApiCall(url: string, key: string): void {
     this.apiCaller.getNews(url).subscribe({
       next: (v) => {
-        this.filteredData = v.results;
+        this.data = v.results;
         this.promptService.NewsNext = v.next;
-        this.cacheService.set(key, this.filteredData);
+        this.cacheService.set(key, this.data);
       },
       error: (e) => {
         this.errorService.sendError(

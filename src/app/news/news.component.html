@@ -1,15 +1,15 @@
-<div *ngIf="(filteredData.length == 0)" class="info-text">Nothing to show
+<div *ngIf="(data.length == 0)" class="info-text">Nothing to show
 </div>
 
 <section
   class="container content"
-  *ngIf="filteredData.length > 0"
+  *ngIf="data.length > 0"
   infiniteScroll
   [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="100"
   (scrolled)="onScrollDown()"
 >
-  <article class="tile" *ngFor="let item of filteredData">
+  <article class="tile" *ngFor="let item of data">
       <h2 *ngIf="item.image_url && item.title" style="text-align: center">{{ item.title }}</h2>
       <img *ngIf="item.image_url && item.title" [src]="item.image_url" />
 
