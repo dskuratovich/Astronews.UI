@@ -131,8 +131,6 @@ export class NewsComponent {
   apiCall(url: string): void {
     this.apiCaller.getNews(url).subscribe({
       next: (v) => {
-        //this.data = [...this.data, ...v.results];
-        // this.filteredData = this.data;
         this.data = [...this.data, ...v.results];
         this.promptService.NewsNext = v.next;
         this.cacheService.set('news', this.data);
