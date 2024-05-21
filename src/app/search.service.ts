@@ -12,5 +12,9 @@ export class SearchService {
     this._searchTerm.next(term);
   }
 
+  getSearchTerm(): string {
+    return this._searchTerm.getValue();
+  }
+
   constructor() { }
 }
