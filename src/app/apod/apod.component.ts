@@ -15,8 +15,9 @@ import { lastValueFrom } from 'rxjs';
   styleUrls: ['./apod.component.scss'],
 })
 export class APODComponent {
-  filteredData: ApodModel[] = [];
+  data: ApodModel[] = [];
   date: Date;
+  isDataUpdated: boolean = false;
 
   constructor(
     private apiCaller: DataService,
@@ -39,12 +40,12 @@ export class APODComponent {
       console.log("1: Property is null, value isn't");
       let cache = this.cacheService.get(value);
 
-      if (cache) {
-        this.filteredData = cache;
+      if (cache && !this.isDataUpdated) {
+        this.data = cache;
         console.log('1: Cache is used');
       } else {
         console.log("1: Cache isn't used");
-        this.filteredData = this.cacheService
+        this.data = this.cacheService
           .get('apod')
           .filter(
             (item: ApodModel) =>
@@ -52,7 +53,8 @@ export class APODComponent {
               item.explanation.toLowerCase().includes(value.toLowerCase())
           );
 
-        this.cacheService.set(value, this.filteredData);
+        this.cacheService.set(value, this.data);
+        this.isDataUpdated = false;
       }
     }
     if (property === null && value == '') {
@@ -61,7 +63,7 @@ export class APODComponent {
 
       if (cache) {
         console.log('2: Cache is used');
-        this.filteredData = cache;
+        this.data = cache;
       } else {
         console.log("2: Cache isn't used");
         let yearEnd = this.convertDateToString(this.date);
@@ -77,62 +79,66 @@ export class APODComponent {
           console.log('3: Prefix = t');
           let cache_t = this.cacheService.get(term);
 
-          if (cache_t) {
+          if (cache_t && !this.isDataUpdated) {
             console.log('3: Prefix = t, cache used');
-            this.filteredData = cache_t;
+            this.data = cache_t;
           } else {
             console.log("3: Prefix = t, cache isn't used");
-            this.filteredData = this.cacheService
+            this.data = this.cacheService
               .get('apod')
               .filter((item: ApodModel) =>
                 item.title.toLowerCase().includes(value.toLowerCase())
               );
-            this.cacheService.set(term, this.filteredData);
+            this.cacheService.set(term, this.data);
+            this.isDataUpdated = false;
           }
           break;
         case 'e':
           let cache_e = this.cacheService.get(term);
 
-          if (cache_e) {
-            this.filteredData = cache_e;
+          if (cache_e && !this.isDataUpdated) {
+            this.data = cache_e;
           } else {
-            this.filteredData = this.cacheService
+            this.data = this.cacheService
               .get('apod')
               .filter((item: ApodModel) =>
                 item.explanation.toLowerCase().includes(value.toLowerCase())
               );
-            this.cacheService.set(term, this.filteredData);
+            this.cacheService.set(term, this.data);
+            this.isDataUpdated = false;
           }
           break;
         case 'c':
           let cache_c = this.cacheService.get(term);
 
-          if (cache_c) {
-            this.filteredData = cache_c;
+          if (cache_c && !this.isDataUpdated) {
+            this.data = cache_c;
           } else {
-            this.filteredData = this.cacheService
+            this.data = this.cacheService
               .get('apod')
               .filter((item: ApodModel) =>
                 item.copyright.toLowerCase().includes(value.toLowerCase())
               );
-            this.cacheService.set(term, this.filteredData);
+            this.cacheService.set(term, this.data);
+            this.isDataUpdated = false;
           }
           break;
         case 'd':
           let cache_d = this.cacheService.get(term);
 
-          if (cache_d) {
-            this.filteredData = cache_d;
+          if (cache_d && !this.isDataUpdated) {
+            this.data = cache_d;
           } else {
-            this.filteredData = this.cacheService
+            this.data = this.cacheService
               .get('apod')
               .filter((item: ApodModel) => item.date.includes(value));
-            this.cacheService.set(term, this.filteredData);
+            this.cacheService.set(term, this.data);
+            this.isDataUpdated = false;
           }
           break;
         default:
           console.log('3: default option used, apod cache applied');
-          this.filteredData = this.cacheService.get('apod');
+          this.data = this.cacheService.get('apod');
           break;
       }
     }
@@ -167,6 +173,7 @@ export class APODComponent {
         data = [...data, ...responseData];
         this.cacheService.set('apod', data);
       }
+      this.isDataUpdated = true;
 
       console.log('calling filterData from apiCall');
       this.filterData(this.searchService.getSearchTerm());
@@ -196,3 +203,4 @@ export class APODComponent {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
+//implement showing the text when there's is nothing to show
