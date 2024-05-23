@@ -203,4 +203,3 @@ export class APODComponent {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
-//implement showing the text when there's is nothing to show

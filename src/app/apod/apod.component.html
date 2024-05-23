@@ -1,5 +1,10 @@
+<div *ngIf="(data.length == 0)" class="info-text">
+Nothing to show
+</div>
+
 <section
   class="container content"
+  *ngIf="data.length > 0"
   infiniteScroll
   [infiniteScrollDistance]="1"
   [infiniteScrollThrottle]="200"
