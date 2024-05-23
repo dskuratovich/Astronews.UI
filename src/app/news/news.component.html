@@ -1,5 +1,4 @@
-<div *ngIf="(data.length == 0)" class="info-text">Nothing to show
-</div>
+<div *ngIf="data.length == 0" class="info-text">Nothing to show</div>
 
 <section
   class="container content"
@@ -10,23 +9,25 @@
   (scrolled)="onScrollDown()"
 >
   <article class="tile" *ngFor="let item of data">
-      <h2 *ngIf="item.image_url && item.title" style="text-align: center">{{ item.title }}</h2>
-      <img *ngIf="item.image_url && item.title" [src]="item.image_url" />
+    <h2 *ngIf="item.image_url && item.title" style="text-align: center">
+      {{ item.title }}
+    </h2>
+    <img *ngIf="item.image_url && item.title" [src]="item.image_url" />
 
-      <p class="tile-summary" *ngIf="item.summary">{{ item.summary }}</p>
+    <p class="tile-summary" *ngIf="item.summary">{{ item.summary }}</p>
 
-      <div>
-        <div class="link-wrapper">
-          <a
-            class="tile-link"
-            *ngIf="item.news_site"
-            [href]="item.url"
-            target="_blank"
-            >{{ item.news_site }}</a
-          >
-        </div>
-
-        <p *ngIf="item.published_at">{{ item.published_at | dateFormat }}</p>
+    <div>
+      <div class="link-wrapper">
+        <a
+          class="tile-link"
+          *ngIf="item.news_site"
+          [href]="item.url"
+          target="_blank"
+          >{{ item.news_site }}</a
+        >
       </div>
+
+      <p *ngIf="item.published_at">{{ item.published_at | dateFormat }}</p>
+    </div>
   </article>
 </section>
