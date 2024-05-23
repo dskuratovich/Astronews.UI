@@ -149,9 +149,7 @@ export class APODComponent {
         cache = [...cache, ...responseData];
         this.cacheService.set('apod', cache);
       } else {
-        let data: any = [];
-        data = [...data, ...responseData];
-        this.cacheService.set('apod', data);
+        this.cacheService.set('apod', responseData);
       }
       this.isDataUpdated = true;
 
