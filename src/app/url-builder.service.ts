@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { SourceManagerService } from './source-manager.service';
 
+enum MediaType {
+  Image,
+  Video,
+  Audio,
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -31,7 +37,7 @@ export class UrlBuilderService {
 
     let bannedSources = this.sourceManager.getBannedSources();
 
-    if(bannedSources.length > 0) {
+    if (bannedSources.length > 0) {
       newsUrlBase += `&news_site_exclude=${bannedSources[0]}`;
 
       for (let index = 1; index < bannedSources.length; index++) {
@@ -39,11 +45,11 @@ export class UrlBuilderService {
       }
     }
 
-    if(this.isISO8601Date(published_after)) {
+    if (this.isISO8601Date(published_after)) {
       newsUrlBase += `&published_at_gte=${published_after}`;
     }
 
-    if(this.isISO8601Date(published_before)) {
+    if (this.isISO8601Date(published_before)) {
       newsUrlBase += `&published_at_lte=${published_before}`;
     }
 
@@ -70,9 +76,80 @@ export class UrlBuilderService {
     return newsUrlBase;
   }
 
-  isISO8601Date(dateString: string): boolean {
+  getGalleryUrl(
+    limit: number = 100,
+    free_search: string = '',
+    center: string = '',
+    description: string = '',
+    keywords: string[] = [],
+    media_type?: MediaType,
+    photographer: string = '',
+    secondary_creator: string = '',
+    title: string = '',
+    start_year: string = '',
+    end_year: string = ''
+  ): string {
+    let galleryUrlBase = environment.api.nasaEndpoint;
+
+    galleryUrlBase += `?page_size=${limit}`;
+
+    if (free_search !== '') {
+      galleryUrlBase += `&q=${free_search}`;
+    }
+
+    if (center !== '') {
+      galleryUrlBase += `&center=${center}`;
+    }
+
+    if (description !== '') {
+      galleryUrlBase += `&description=${description}`;
+    }
+
+    if (keywords.length > 0) {
+      galleryUrlBase += `&keywords=${keywords[0]}`;
+
+      for (let index = 1; index < keywords.length; index++) {
+        galleryUrlBase += `%2C${keywords[index]}`;
+      }
+    }
+
+    if (media_type !== undefined) {
+      galleryUrlBase += `&media_type=${MediaType[media_type].toLowerCase()}`;
+    }
+
+    if (photographer !== '') {
+      galleryUrlBase += `&photographer=${photographer}`;
+    }
+
+    if (secondary_creator !== '') {
+      galleryUrlBase += `&secondary_creator=${secondary_creator}`;
+    }
+
+    if (title !== '') {
+      galleryUrlBase += `&title=${title}`;
+    }
+
+    if (this.isYYYYFormat(start_year)) {
+      galleryUrlBase += `&year_start=${start_year}`;
+    } else {
+      let date = new Date();
+      galleryUrlBase += `&year_start=${date.getUTCFullYear()}`;
+    }
+
+    if (this.isYYYYFormat(end_year)) {
+      galleryUrlBase += `&year_end=${end_year}`;
+    }
+
+    return galleryUrlBase;
+  }
+
+  private isISO8601Date(dateString: string): boolean {
     const iso8601Pattern = /^\d{4}-\d{2}-\d{2}$/;
-  
+
     return iso8601Pattern.test(dateString);
+  }
+
+  private isYYYYFormat(year: string): boolean {
+    return /^\d{4}$/.test(year);
   }
 }
