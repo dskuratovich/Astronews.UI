@@ -7,5 +7,8 @@ export const environment = {
     marsOpportunityEndpoint: 'https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos',
     marsSpiritEndpoint: 'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos',
     apodEndpoint: 'https://api.nasa.gov/planetary/apod',
+    marsCuriosityLatestEndpoint: 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos',
+    marsOpportunityLatestEndpoint: 'https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/latest_photos',
+    marsSpiritLatestEndpoint: 'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/latest_photos'
   }
 };
