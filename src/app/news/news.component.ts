@@ -8,6 +8,7 @@ import { SearchService } from '../search.service';
 import { parseSearchTerm, parseSearchValue } from '../search.util';
 import { UrlBuilderService } from '../url-builder.service';
 import { CachingService } from '../caching.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-news',
@@ -16,6 +17,7 @@ import { CachingService } from '../caching.service';
 })
 export class NewsComponent {
   data: NewsModel[] = [];
+  isDataUpdated: boolean = false;
 
   constructor(
     private apiCaller: DataService,
@@ -128,20 +130,27 @@ export class NewsComponent {
     this.apiCall(this.promptService.NewsNext);
   }
 
-  apiCall(url: string): void {
-    this.apiCaller.getNews(url).subscribe({
-      next: (v) => {
-        this.data = [...this.data, ...v.results];
-        this.promptService.NewsNext = v.next;
-        this.cacheService.set('news', this.data);
-      },
-      error: (e) => {
-        this.errorService.sendError(
-          'Error occured during fetching the data. Please, try again shortly.'
-        );
-        this.router.navigate(['/Error']);
-      },
-    });
+  async apiCall(url: string): Promise<void> {
+    try {
+      const responseData$ = this.apiCaller.getNews(url);
+      const responseData = await lastValueFrom(responseData$);
+
+      let cache = this.cacheService.get('news');
+
+      if (cache) {
+        cache = [...cache, ...responseData.results];
+        this.cacheService.set('news', cache);
+        this.data = cache;
+      } else {
+        this.cacheService.set('news', responseData.results);
+      }
+      this.isDataUpdated = true;
+    } catch (error) {
+      this.errorService.sendError(
+        'Error occured during fetching the data. Please, try again shortly.'
+      );
+      this.router.navigate(['/Error']);
+    }
   }
 
   clearApiCall(url: string, key: string): void {
