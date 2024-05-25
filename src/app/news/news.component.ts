@@ -58,59 +58,95 @@ export class NewsComponent {
       if (property != null && value != '') {
         switch (property?.toLowerCase()) {
           case 't':
-            let urlT = urlBuilder.getNewsUrl(
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              parseSearchValue(value)
-            );
-            this.clearApiCall(urlT, value);
+            let cache_t = this.cacheService.get(term);
+
+            if (cache_t && !this.isDataUpdated) {
+              this.data = cache_t;
+            } else {
+              let urlT = urlBuilder.getNewsUrl(
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                parseSearchValue(value)
+              );
+              this.clearApiCall(urlT, value);
+            }
             break;
           case 'ns':
-            let urlNS = urlBuilder.getNewsUrl(
-              undefined,
-              parseSearchValue(value)
-            );
-            this.clearApiCall(urlNS, value);
+            let cache_ns = this.cacheService.get(term);
+
+            if (cache_ns && !this.isDataUpdated) {
+              this.data = cache_ns;
+            } else {
+              let urlNS = urlBuilder.getNewsUrl(
+                undefined,
+                parseSearchValue(value)
+              );
+              this.clearApiCall(urlNS, value);
+            }
             break;
           case 's':
-            let urlS = urlBuilder.getNewsUrl(
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              parseSearchValue(value)
-            );
-            this.clearApiCall(urlS, value);
+            let cache_s = this.cacheService.get(term);
+
+            if (cache_s && !this.isDataUpdated) {
+              this.data = cache_s;
+            } else {
+              let urlS = urlBuilder.getNewsUrl(
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                parseSearchValue(value)
+              );
+              this.clearApiCall(urlS, value);
+            }
             break;
           case 'p':
-            let dates = parseSearchValue(value);
-            if (dates.length == 2) {
-              let urlP = urlBuilder.getNewsUrl(
-                undefined,
-                undefined,
-                dates[0],
-                dates[1]
-              );
-              this.clearApiCall(urlP, value);
+            let cache_p = this.cacheService.get(term);
+
+            if (cache_p && !this.isDataUpdated) {
+              this.data = cache_p;
+            } else {
+              let dates = parseSearchValue(value);
+              if (dates.length == 2) {
+                let urlP = urlBuilder.getNewsUrl(
+                  undefined,
+                  undefined,
+                  dates[0],
+                  dates[1]
+                );
+                this.clearApiCall(urlP, value);
+              }
             }
             break;
           case 'pb':
-            let urlPB = urlBuilder.getNewsUrl(
-              undefined,
-              undefined,
-              undefined,
-              value
-            );
-            this.clearApiCall(urlPB, value);
+            let cache_pb = this.cacheService.get(term);
+
+            if (cache_pb && !this.isDataUpdated) {
+              this.data = cache_pb;
+            } else {
+              let urlPB = urlBuilder.getNewsUrl(
+                undefined,
+                undefined,
+                undefined,
+                value
+              );
+              this.clearApiCall(urlPB, value);
+            }
             break;
           case 'ba':
-            let urlPA = urlBuilder.getNewsUrl(undefined, undefined, value);
-            this.clearApiCall(urlPA, value);
+            let cache_ba = this.cacheService.get(term);
+
+            if (cache_ba && !this.isDataUpdated) {
+              this.data = cache_ba;
+            } else {
+              let urlPA = urlBuilder.getNewsUrl(undefined, undefined, value);
+              this.clearApiCall(urlPA, value);
+            }
             break;
           default:
             let cache = cacheService.get('news');
