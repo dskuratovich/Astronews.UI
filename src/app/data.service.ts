@@ -81,7 +81,7 @@ export class DataService {
       .pipe(catchError(this.handleError));
   }
 
-  getCuriosityMarsLatest(sol: number): Observable<MarsRootModel> {
+  getCuriosityMarsLatest(): Observable<MarsRootModel> {
     let apiKey = this.apiKeyService.getApiKey();
     let requestUrl = this.marsCuriosityLatestEndpoint.concat(
       `?api_key=${apiKey}`
@@ -91,7 +91,7 @@ export class DataService {
       .pipe(catchError(this.handleError));
   }
 
-  getOpportunityMarsLatest(sol: number): Observable<MarsRootModel> {
+  getOpportunityMarsLatest(): Observable<MarsRootModel> {
     let apiKey = this.apiKeyService.getApiKey();
     let requestUrl = this.marsOpportunityLatestEndpoint.concat(
       `?api_key=${apiKey}`
@@ -101,7 +101,7 @@ export class DataService {
       .pipe(catchError(this.handleError));
   }
 
-  getSpiritMarsLatest(sol: number): Observable<MarsRootModel> {
+  getSpiritMarsLatest(): Observable<MarsRootModel> {
     let apiKey = this.apiKeyService.getApiKey();
     let requestUrl = this.marsSpiritLatestEndpoint.concat(
       `?api_key=${apiKey}`
