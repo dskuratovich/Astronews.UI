@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { SourceManagerService } from './source-manager.service';
+import { Rovers } from './models/rovers';
+import {
+  CuriosityCameras,
+  MarsRoverCameras,
+  OpportunityCameras,
+  PerseveranceCameras,
+  SpiritCameras,
+} from './models/rover.cameras';
 
 enum MediaType {
   Image,
@@ -141,6 +149,83 @@ export class UrlBuilderService {
     }
 
     return galleryUrlBase;
+  }
+
+  getMarsUrl(
+    sol: string = '',
+    earth_date: string = '',
+    rover: Rovers,
+    camera?: MarsRoverCameras
+  ): string {
+    let marsUrl = '';
+
+    switch (rover) {
+      case Rovers.Opportunity:
+        marsUrl = environment.api.marsOpportunityEndpoint;
+        marsUrl += `?sol=${sol}`;
+
+        if (camera !== undefined) {
+          marsUrl += `&camera=${OpportunityCameras[camera]}`;
+        }
+
+        if (this.isISO8601Date(earth_date)) {
+          marsUrl += `&earth_date=${earth_date}`;
+        }
+        break;
+      case Rovers.Spirit:
+        marsUrl = environment.api.marsSpiritEndpoint;
+        marsUrl += `?sol=${sol}`;
+
+        if (camera !== undefined) {
+          marsUrl += `&camera=${SpiritCameras[camera]}`;
+        }
+
+        if (this.isISO8601Date(earth_date)) {
+          marsUrl += `&earth_date=${earth_date}`;
+        }
+        break;
+      case Rovers.Perseverance:
+        marsUrl = environment.api.marsPerseveranceEndpoint;
+        marsUrl += `?sol=${sol}`;
+
+        if (camera !== undefined) {
+          marsUrl += `&camera=${PerseveranceCameras[camera]}`;
+        }
+
+        if (this.isISO8601Date(earth_date)) {
+          marsUrl += `&earth_date=${earth_date}`;
+        }
+        break;
+      case Rovers.Curiosity:
+        console.log('We are in the Curiosity region of code');
+        marsUrl = environment.api.marsCuriosityEndpoint;
+        marsUrl += `?sol=${sol}`;
+
+        if (camera !== undefined) {
+          console.log('We got into camera section, the camera value is: ' + CuriosityCameras[camera]);
+          marsUrl += `&camera=${CuriosityCameras[camera]}`;
+        }
+
+        if (this.isISO8601Date(earth_date)) {
+          marsUrl += `&earth_date=${earth_date}`;
+        }
+        break;
+    }
+
+    return marsUrl;
+  }
+
+  getMarsLatestUrl(rover: Rovers): string {
+    switch (rover) {
+      case Rovers.Opportunity:
+        return environment.api.marsOpportunityLatestEndpoint;
+      case Rovers.Spirit:
+        return environment.api.marsSpiritLatestEndpoint;
+      case Rovers.Perseverance:
+        return environment.api.marsPerseveranceLatestEndpoint;
+      case Rovers.Curiosity:
+        return environment.api.marsCuriosityLatestEndpoint;
+    }
   }
 
   private isISO8601Date(dateString: string): boolean {
