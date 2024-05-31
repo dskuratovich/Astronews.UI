@@ -197,12 +197,10 @@ export class UrlBuilderService {
         }
         break;
       case Rovers.Curiosity:
-        console.log('We are in the Curiosity region of code');
         marsUrl = environment.api.marsCuriosityEndpoint;
         marsUrl += `?sol=${sol}`;
 
         if (camera !== undefined) {
-          console.log('We got into camera section, the camera value is: ' + CuriosityCameras[camera]);
           marsUrl += `&camera=${CuriosityCameras[camera]}`;
         }
 
