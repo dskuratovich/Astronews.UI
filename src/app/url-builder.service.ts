@@ -152,7 +152,7 @@ export class UrlBuilderService {
   }
 
   getMarsUrl(
-    sol: string = '',
+    sol: string,
     earth_date: string = '',
     rover: Rovers,
     camera?: MarsRoverCameras
