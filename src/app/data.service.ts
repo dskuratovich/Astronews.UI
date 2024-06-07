@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { MarsRootModel } from './models/mars.model';
+import { MarsRootLatestModel, MarsRootModel } from './models/mars.model';
 import { ApodModel } from './models/apod.model';
 import { NewsRootModel } from './models/news.root.model';
 import { GalleryRootModel } from './models/gallery.root.model';
@@ -15,13 +15,7 @@ import { ApiKeyService } from './api-key.service';
 export class DataService {
   private newsEndpoint = environment.api.newsEndpoint;
   private nasaEndpoint = environment.api.nasaEndpoint;
-  private marsCuriosityEndpoint = environment.api.marsCuriosityEndpoint;
-  private marsOpportunityEndpoint = environment.api.marsOpportunityEndpoint;
-  private marsSpiritEndpoint = environment.api.marsSpiritEndpoint;
   private apodEndpoint = environment.api.apodEndpoint;
-  private marsCuriosityLatestEndpoint = environment.api.marsCuriosityLatestEndpoint;
-  private marsOpportunityLatestEndpoint = environment.api.marsOpportunityLatestEndpoint;
-  private marsSpiritLatestEndpoint = environment.api.marsSpiritLatestEndpoint;
 
   constructor(private http: HttpClient, private apiKeyService: ApiKeyService) {}
 
@@ -51,63 +45,35 @@ export class DataService {
       .pipe(catchError(this.handleError));
   }
 
-  getCuriosityMarsPhotos(sol: number): Observable<MarsRootModel> {
+  getMarsPhotos(url: string): Observable<MarsRootModel> {
     let apiKey = this.apiKeyService.getApiKey();
-    let requestUrl = this.marsCuriosityEndpoint.concat(
-      `?sol=${sol}&api_key=${apiKey}`
-    );
+
+    let requestUrl = url;
+
+    if (url.includes('?')) {
+      requestUrl = requestUrl.concat(`&api_key=${apiKey}`);
+    } else {
+      requestUrl = requestUrl.concat(`?api_key=${apiKey}`);
+    }
+    console.log(requestUrl);
     return this.http
       .get<MarsRootModel>(requestUrl)
       .pipe(catchError(this.handleError));
   }
 
-  getOpportunityMarsPhotos(sol: number): Observable<MarsRootModel> {
+  getMarsLatestPhotos(url: string): Observable<MarsRootLatestModel> {
     let apiKey = this.apiKeyService.getApiKey();
-    let requestUrl = this.marsOpportunityEndpoint.concat(
-      `?sol=${sol}&api_key=${apiKey}`
-    );
-    return this.http
-      .get<MarsRootModel>(requestUrl)
-      .pipe(catchError(this.handleError));
-  }
 
-  getSpiritMarsPhotos(sol: number): Observable<MarsRootModel> {
-    let apiKey = this.apiKeyService.getApiKey();
-    let requestUrl = this.marsSpiritEndpoint.concat(
-      `?sol=${sol}&api_key=${apiKey}`
-    );
-    return this.http
-      .get<MarsRootModel>(requestUrl)
-      .pipe(catchError(this.handleError));
-  }
+    let requestUrl = url;
 
-  getCuriosityMarsLatest(): Observable<MarsRootModel> {
-    let apiKey = this.apiKeyService.getApiKey();
-    let requestUrl = this.marsCuriosityLatestEndpoint.concat(
-      `?api_key=${apiKey}`
-    );
+    if (url.includes('?')) {
+      requestUrl = requestUrl.concat(`&api_key=${apiKey}`);
+    } else {
+      requestUrl = requestUrl.concat(`?api_key=${apiKey}`);
+    }
+    console.log(requestUrl);
     return this.http
-      .get<MarsRootModel>(requestUrl)
-      .pipe(catchError(this.handleError));
-  }
-
-  getOpportunityMarsLatest(): Observable<MarsRootModel> {
-    let apiKey = this.apiKeyService.getApiKey();
-    let requestUrl = this.marsOpportunityLatestEndpoint.concat(
-      `?api_key=${apiKey}`
-    );
-    return this.http
-      .get<MarsRootModel>(requestUrl)
-      .pipe(catchError(this.handleError));
-  }
-
-  getSpiritMarsLatest(): Observable<MarsRootModel> {
-    let apiKey = this.apiKeyService.getApiKey();
-    let requestUrl = this.marsSpiritLatestEndpoint.concat(
-      `?api_key=${apiKey}`
-    );
-    return this.http
-      .get<MarsRootModel>(requestUrl)
+      .get<MarsRootLatestModel>(requestUrl)
       .pipe(catchError(this.handleError));
   }
 
