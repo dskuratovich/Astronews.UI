@@ -1,3 +1,5 @@
+<div *ngIf="data.length == 0" class="info-text">Nothing to show</div>
+
 <section
   class="container content"
   infiniteScroll
@@ -5,7 +7,7 @@
   [infiniteScrollThrottle]="50"
   (scrolled)="onScrollDown()"
 >
-  <article class="tile" *ngFor="let item of filteredData">
+  <article class="tile" *ngFor="let item of data">
     <div class="tile-content" *ngIf="item.img_src">
       <div class="text-content">
         <p class="sol">Sol: {{ item.sol }}</p>
