@@ -152,7 +152,7 @@ export class UrlBuilderService {
   }
 
   getMarsUrl(
-    sol: string,
+    sol: string = '',
     earth_date: string = '',
     rover: Rovers,
     camera?: MarsRoverCameras
@@ -162,52 +162,43 @@ export class UrlBuilderService {
     switch (rover) {
       case Rovers.Opportunity:
         marsUrl = environment.api.marsOpportunityEndpoint;
-        marsUrl += `?sol=${sol}`;
 
         if (camera !== undefined) {
           marsUrl += `&camera=${OpportunityCameras[camera]}`;
         }
-
-        if (this.isISO8601Date(earth_date)) {
-          marsUrl += `&earth_date=${earth_date}`;
-        }
         break;
       case Rovers.Spirit:
         marsUrl = environment.api.marsSpiritEndpoint;
-        marsUrl += `?sol=${sol}`;
 
         if (camera !== undefined) {
           marsUrl += `&camera=${SpiritCameras[camera]}`;
         }
-
-        if (this.isISO8601Date(earth_date)) {
-          marsUrl += `&earth_date=${earth_date}`;
-        }
         break;
       case Rovers.Perseverance:
         marsUrl = environment.api.marsPerseveranceEndpoint;
-        marsUrl += `?sol=${sol}`;
 
         if (camera !== undefined) {
           marsUrl += `&camera=${PerseveranceCameras[camera]}`;
         }
-
-        if (this.isISO8601Date(earth_date)) {
-          marsUrl += `&earth_date=${earth_date}`;
-        }
         break;
       case Rovers.Curiosity:
         marsUrl = environment.api.marsCuriosityEndpoint;
-        marsUrl += `?sol=${sol}`;
 
         if (camera !== undefined) {
           marsUrl += `&camera=${CuriosityCameras[camera]}`;
         }
-
-        if (this.isISO8601Date(earth_date)) {
-          marsUrl += `&earth_date=${earth_date}`;
-        }
         break;
+    }
+
+    if (sol !== '') {
+      console.log(sol);
+      marsUrl += `?sol=${sol}`;
+    }
+
+    if (this.isISO8601Date(earth_date) && sol !== '') {
+      marsUrl += `&earth_date=${earth_date}`;
+    } else if (this.isISO8601Date(earth_date)) {
+      marsUrl += `?earth_date=${earth_date}`;
     }
 
     return marsUrl;
