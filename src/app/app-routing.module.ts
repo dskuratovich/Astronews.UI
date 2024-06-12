@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'News', component: NewsComponent },
   { path: 'NasaGallery', component: NasaGalleryComponent },
   { path: 'MarsPhotos/Curiosity', component: MarsPhotosCuriosityComponent },
-  { path: 'MarsPhotos/Opportunity', component: MarsPhotosOpportunityComponent },
-  { path: 'MarsPhotos/Spirit', component: MarsPhotosSpiritComponent },
+  //{ path: 'MarsPhotos/Opportunity', component: MarsPhotosOpportunityComponent },
+  //{ path: 'MarsPhotos/Spirit', component: MarsPhotosSpiritComponent },
   { path: 'APOD', component: APODComponent },
   { path: 'Error', component: ErrorComponent },
   { path: '', redirectTo: '/News', pathMatch: 'full' }
