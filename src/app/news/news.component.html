@@ -3,7 +3,7 @@
 <section
   class="container content"
   *ngIf="data.length > 0"
-  infiniteScroll
+  infiniteScroll="!isSearchMode"
   [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="100"
   (scrolled)="onScrollDown()"
@@ -31,3 +31,7 @@
     </div>
   </article>
 </section>
+
+<div *ngIf="isSearchMode" class="pagination-controls">
+  <button (click)="nextPage()">Next</button>
+</div>
