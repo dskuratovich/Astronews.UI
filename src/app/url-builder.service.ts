@@ -23,7 +23,7 @@ export class UrlBuilderService {
   constructor(private sourceManager: SourceManagerService) {}
 
   getNewsUrl(
-    limit: number = 600,
+    limit: number = 200,
     source: string[] = [],
     published_after: string = '',
     published_before: string = '',
@@ -76,7 +76,7 @@ export class UrlBuilderService {
     if (title.length > 0) {
       newsUrlBase += `&title_contains_one=${title[0]}`;
 
-      for (let index = 0; index < title.length; index++) {
+      for (let index = 1; index < title.length; index++) {
         newsUrlBase += `%2C${title[index]}`;
       }
     }
@@ -85,7 +85,7 @@ export class UrlBuilderService {
   }
 
   getGalleryUrl(
-    limit: number = 100,
+    limit: number = 80,
     free_search: string = '',
     center: string = '',
     description: string = '',
