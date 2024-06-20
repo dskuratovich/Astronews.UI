@@ -5,8 +5,8 @@ import { NasaGalleryComponent } from './nasa-gallery/nasa-gallery.component';
 import { MarsPhotosCuriosityComponent } from './mars-photos-curiosity/mars-photos-curiosity.component';
 import { APODComponent } from './apod/apod.component';
 import { ErrorComponent } from './error/error.component';
-import { MarsPhotosOpportunityComponent } from './mars-photos-opportunity/mars-photos-opportunity.component';
-import { MarsPhotosSpiritComponent } from './mars-photos-spirit/mars-photos-spirit.component';
+//import { MarsPhotosOpportunityComponent } from './mars-photos-opportunity/mars-photos-opportunity.component';
+//import { MarsPhotosSpiritComponent } from './mars-photos-spirit/mars-photos-spirit.component';
 
 const routes: Routes = [
   { path: 'News', component: NewsComponent },

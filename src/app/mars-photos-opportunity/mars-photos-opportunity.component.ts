@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { MarsModel } from '../models/mars.model';
 import { DataService } from '../data.service';
 import { ErrorService } from '../error.service';
@@ -69,3 +69,4 @@ export class MarsPhotosOpportunityComponent implements OnInit {
     });
   }
 }
+*/

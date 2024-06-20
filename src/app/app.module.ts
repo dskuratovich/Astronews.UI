@@ -16,8 +16,8 @@ import { HeaderComponent } from './header/header.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SortPipe } from './shared/sort.pipe';
-import { MarsPhotosOpportunityComponent } from './mars-photos-opportunity/mars-photos-opportunity.component';
-import { MarsPhotosSpiritComponent } from './mars-photos-spirit/mars-photos-spirit.component';
+//import { MarsPhotosOpportunityComponent } from './mars-photos-opportunity/mars-photos-opportunity.component';
+//import { MarsPhotosSpiritComponent } from './mars-photos-spirit/mars-photos-spirit.component';
 import { DataSortPipe } from './data-sort.pipe';
 import { BackToTopComponent } from './back-to-top/back-to-top.component';
 import { DateFormatPipe } from './date-format.pipe';
@@ -33,8 +33,8 @@ import { DateFormatPipe } from './date-format.pipe';
     APODComponent,
     ErrorComponent,
     SortPipe,
-    MarsPhotosOpportunityComponent,
-    MarsPhotosSpiritComponent,
+    //MarsPhotosOpportunityComponent,
+    //MarsPhotosSpiritComponent,
     DataSortPipe,
     BackToTopComponent,
     DateFormatPipe
