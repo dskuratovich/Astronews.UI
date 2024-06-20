@@ -205,15 +205,18 @@ export class NewsComponent {
       const responseData = await lastValueFrom(this.apiCaller.getNews(url));
 
       if (responseData.results.length == 0) {
-        await this.onScrollDown();
-      } else {
+        return;
+      }
+
+      if (responseData.next != url) {
         this.data = [...this.data, ...responseData.results];
         //using url for cache key won't work
         //after onScrollDown url will change
         //leading to saving new cache
         //and not using an old one
+        this.promptService.NewsNext = responseData.next;
         let newsCache: NewsCache;
-        newsCache = { nextUrl: '', data: this.data };
+        newsCache = { nextUrl: responseData.next, data: this.data };
         this.cacheService.set(key, newsCache);
       }
     } catch (error) {
@@ -245,5 +248,8 @@ export class NewsComponent {
 
   async nextPage() {
     await this.apiCall(this.promptService.NewsNext, this.cacheKeyword);
+    //when the last available data is retrieved from API,
+    //next button click leads to requesting the same last data
+    //in other words, after reaching the end data starts to loop
   }
 }
