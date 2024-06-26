@@ -20,6 +20,7 @@ export class NewsComponent {
   data: NewsModel[] = [];
   private cacheKeyword: string = '';
   isSearchMode: boolean = false;
+  isDataAvailable: boolean = false;
 
   constructor(
     private apiCaller: DataService,
@@ -27,7 +28,7 @@ export class NewsComponent {
     private router: Router,
     private promptService: PromptService,
     private searchService: SearchService,
-    private urlBuilder: UrlBuilderService,
+    urlBuilder: UrlBuilderService,
     private cacheService: CachingService
   ) {
     this.searchService.searchTerm$.subscribe((term) => {
@@ -38,115 +39,118 @@ export class NewsComponent {
         if (this.isSearchMode && property != null) {
           this.cacheKeyword = term;
 
-          console.log('property and value are not null');
           switch (property?.toLowerCase()) {
             case 't':
-              console.log(value);
-              let urlT = urlBuilder.getNewsUrl(
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                parseSearchValue(value)
-              );
-
               let cache_t = this.cacheService.get(this.cacheKeyword);
 
               if (cache_t) {
                 this.data = cache_t.data;
                 this.promptService.NewsNext = cache_t.nextUrl;
               } else {
+                let urlT = urlBuilder.getNewsUrl(
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  parseSearchValue(value)
+                );
+
                 this.clearApiCall(urlT, this.cacheKeyword);
               }
+              this.isDataAvailable = true;
               break;
             case 'ns':
-              let urlNS = urlBuilder.getNewsUrl(
-                undefined,
-                parseSearchValue(value)
-              );
-
               let cache_ns = this.cacheService.get(this.cacheKeyword);
 
               if (cache_ns) {
                 this.data = cache_ns.data;
                 this.promptService.NewsNext = cache_ns.nextUrl;
               } else {
+                let urlNS = urlBuilder.getNewsUrl(
+                  undefined,
+                  parseSearchValue(value)
+                );
+
                 this.clearApiCall(urlNS, this.cacheKeyword);
               }
+              this.isDataAvailable = true;
               break;
             case 's':
-              let urlS = urlBuilder.getNewsUrl(
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                parseSearchValue(value)
-              );
-
               let cache_s = this.cacheService.get(this.cacheKeyword);
 
               if (cache_s) {
                 this.data = cache_s.data;
                 this.promptService.NewsNext = cache_s.nextUrl;
               } else {
-                this.clearApiCall(urlS, this.cacheKeyword);
-              }
-              break;
-            case 'p':
-              let dates = parseSearchValue(value);
-              if (dates.length == 2) {
-                let urlP = urlBuilder.getNewsUrl(
+                let urlS = urlBuilder.getNewsUrl(
                   undefined,
                   undefined,
-                  dates[0],
-                  dates[1]
+                  undefined,
+                  undefined,
+                  undefined,
+                  parseSearchValue(value)
                 );
 
-                let cache_p = this.cacheService.get(this.cacheKeyword);
+                this.clearApiCall(urlS, this.cacheKeyword);
+              }
+              this.isDataAvailable = true;
+              break;
+            case 'p':
+              let cache_p = this.cacheService.get(this.cacheKeyword);
 
-                if (cache_p) {
-                  this.data = cache_p.data;
-                  this.promptService.NewsNext = cache_p.nextUrl;
-                } else {
+              if (cache_p) {
+                this.data = cache_p.data;
+                this.promptService.NewsNext = cache_p.nextUrl;
+              } else {
+                let dates = parseSearchValue(value);
+                if (dates.length == 2) {
+                  let urlP = urlBuilder.getNewsUrl(
+                    undefined,
+                    undefined,
+                    dates[0],
+                    dates[1]
+                  );
+
                   this.clearApiCall(urlP, this.cacheKeyword);
                 }
               }
+              this.isDataAvailable = true;
               break;
             case 'pb':
-              let urlPB = urlBuilder.getNewsUrl(
-                undefined,
-                undefined,
-                undefined,
-                value
-              );
-
               let cache_pb = this.cacheService.get(this.cacheKeyword);
 
               if (cache_pb) {
                 this.data = cache_pb.data;
                 this.promptService.NewsNext = cache_pb.nextUrl;
               } else {
+                let urlPB = urlBuilder.getNewsUrl(
+                  undefined,
+                  undefined,
+                  undefined,
+                  value
+                );
+
                 this.clearApiCall(urlPB, this.cacheKeyword);
               }
+              this.isDataAvailable = true;
               break;
             case 'ba':
-              let urlPA = urlBuilder.getNewsUrl(undefined, undefined, value);
-
               let cache_ba = this.cacheService.get(this.cacheKeyword);
 
               if (cache_ba) {
                 this.data = cache_ba.data;
                 this.promptService.NewsNext = cache_ba.nextUrl;
               } else {
+                let urlPA = urlBuilder.getNewsUrl(undefined, undefined, value);
+
                 this.clearApiCall(urlPA, this.cacheKeyword);
               }
+              this.isDataAvailable = true;
               break;
             default:
-              console.log('default case');
-              let default_url = this.urlBuilder.getNewsUrl();
+              let default_url = urlBuilder.getNewsUrl();
               let cache = cacheService.get(default_url);
 
               if (cache) {
@@ -155,10 +159,10 @@ export class NewsComponent {
               } else {
                 this.clearApiCall(default_url, default_url);
               }
+              this.isDataAvailable = true;
               break;
           }
         } else if (this.isSearchMode) {
-          console.log('property null, value is not');
           this.cacheKeyword = value;
           let cache = cacheService.get(value);
 
@@ -175,18 +179,18 @@ export class NewsComponent {
             );
             this.clearApiCall(url, value);
           }
+          this.isDataAvailable = true;
         }
       } else {
-        console.log('all is null, default empty search bar');
-        let urlEmpty = this.urlBuilder.getNewsUrl();
+        let urlEmpty = urlBuilder.getNewsUrl();
         this.cacheKeyword = urlEmpty;
-        let cache = cacheService.get(urlEmpty);
+        let cache = cacheService.get(this.cacheKeyword);
 
         if (cache) {
           this.data = cache.data;
           this.promptService.NewsNext = cache.nextUrl;
         } else {
-          this.clearApiCall(urlEmpty, urlEmpty);
+          this.clearApiCall(urlEmpty, this.cacheKeyword);
         }
       }
     });
@@ -194,13 +198,15 @@ export class NewsComponent {
 
   async onScrollDown() {
     if (!this.isSearchMode) {
-      console.log('onScrollDown triggered');
       await this.apiCall(this.promptService.NewsNext, this.cacheKeyword);
     }
   }
 
-  async apiCall(url: string, key: string): Promise<void> {
-    console.log('apiCall made');
+  private async apiCall(url: string, key: string): Promise<void> {
+    if (!url) {
+      this.isDataAvailable = false;
+      return;
+    }
     try {
       const responseData = await lastValueFrom(this.apiCaller.getNews(url));
 
@@ -210,14 +216,15 @@ export class NewsComponent {
 
       if (responseData.next != url) {
         this.data = [...this.data, ...responseData.results];
-        //using url for cache key won't work
-        //after onScrollDown url will change
-        //leading to saving new cache
-        //and not using an old one
         this.promptService.NewsNext = responseData.next;
         let newsCache: NewsCache;
         newsCache = { nextUrl: responseData.next, data: this.data };
         this.cacheService.set(key, newsCache);
+        if (responseData.next) {
+          this.isDataAvailable = true;
+        } else {
+          this.isDataAvailable = false;
+        }
       }
     } catch (error) {
       this.errorService.sendError(
@@ -227,8 +234,7 @@ export class NewsComponent {
     }
   }
 
-  clearApiCall(url: string, key: string): void {
-    console.log('clearApiCall made');
+  private clearApiCall(url: string, key: string): void {
     this.apiCaller.getNews(url).subscribe({
       next: (v) => {
         this.data = v.results;
@@ -236,6 +242,11 @@ export class NewsComponent {
         let newsCache: NewsCache;
         newsCache = { nextUrl: v.next, data: v.results };
         this.cacheService.set(key, newsCache);
+        if (!v.next) {
+          this.isDataAvailable = false;
+        } else {
+          this.isDataAvailable = true;
+        }
       },
       error: (e) => {
         this.errorService.sendError(
@@ -248,8 +259,5 @@ export class NewsComponent {
 
   async nextPage() {
     await this.apiCall(this.promptService.NewsNext, this.cacheKeyword);
-    //when the last available data is retrieved from API,
-    //next button click leads to requesting the same last data
-    //in other words, after reaching the end data starts to loop
   }
 }

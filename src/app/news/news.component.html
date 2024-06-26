@@ -33,5 +33,5 @@
 </section>
 
 <div *ngIf="isSearchMode" class="pagination-controls">
-  <button (click)="nextPage()">Next</button>
+  <button [disabled]="!isDataAvailable" (click)="nextPage()">Next</button>
 </div>
