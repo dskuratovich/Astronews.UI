@@ -59,7 +59,6 @@ export class NewsComponent {
 
                 this.clearApiCall(urlT, this.cacheKeyword);
               }
-              this.isDataAvailable = true;
               break;
             case 'ns':
               let cache_ns = this.cacheService.get(this.cacheKeyword);
@@ -75,7 +74,6 @@ export class NewsComponent {
 
                 this.clearApiCall(urlNS, this.cacheKeyword);
               }
-              this.isDataAvailable = true;
               break;
             case 's':
               let cache_s = this.cacheService.get(this.cacheKeyword);
@@ -95,7 +93,6 @@ export class NewsComponent {
 
                 this.clearApiCall(urlS, this.cacheKeyword);
               }
-              this.isDataAvailable = true;
               break;
             case 'p':
               let cache_p = this.cacheService.get(this.cacheKeyword);
@@ -116,7 +113,6 @@ export class NewsComponent {
                   this.clearApiCall(urlP, this.cacheKeyword);
                 }
               }
-              this.isDataAvailable = true;
               break;
             case 'pb':
               let cache_pb = this.cacheService.get(this.cacheKeyword);
@@ -134,7 +130,6 @@ export class NewsComponent {
 
                 this.clearApiCall(urlPB, this.cacheKeyword);
               }
-              this.isDataAvailable = true;
               break;
             case 'ba':
               let cache_ba = this.cacheService.get(this.cacheKeyword);
@@ -147,7 +142,6 @@ export class NewsComponent {
 
                 this.clearApiCall(urlPA, this.cacheKeyword);
               }
-              this.isDataAvailable = true;
               break;
             default:
               let default_url = urlBuilder.getNewsUrl();
@@ -159,7 +153,6 @@ export class NewsComponent {
               } else {
                 this.clearApiCall(default_url, default_url);
               }
-              this.isDataAvailable = true;
               break;
           }
         } else if (this.isSearchMode) {
@@ -179,7 +172,6 @@ export class NewsComponent {
             );
             this.clearApiCall(url, value);
           }
-          this.isDataAvailable = true;
         }
       } else {
         let urlEmpty = urlBuilder.getNewsUrl();
