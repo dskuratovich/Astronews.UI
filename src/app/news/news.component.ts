@@ -212,11 +212,13 @@ export class NewsComponent {
         let newsCache: NewsCache;
         newsCache = { nextUrl: responseData.next, data: this.data };
         this.cacheService.set(key, newsCache);
-        responseData.next ? this.isDataAvailable = true : this.isDataAvailable = false;
+        responseData.next
+          ? (this.isDataAvailable = true)
+          : (this.isDataAvailable = false);
       }
     } catch (error) {
       this.errorService.sendError(
-        'Error occured during fetching the data. Please, try again shortly.'
+        'Error occured during data fetch. Please, try again shortly.'
       );
       this.router.navigate(['/Error']);
     }
@@ -230,11 +232,11 @@ export class NewsComponent {
         let newsCache: NewsCache;
         newsCache = { nextUrl: v.next, data: v.results };
         this.cacheService.set(key, newsCache);
-        v.next ? this.isDataAvailable = true : this.isDataAvailable = false;
+        v.next ? (this.isDataAvailable = true) : (this.isDataAvailable = false);
       },
       error: (e) => {
         this.errorService.sendError(
-          'Error occured during fetching the data. Please, try again shortly.'
+          'Error occured during data fetch. Please, try again shortly.'
         );
         this.router.navigate(['/Error']);
       },
