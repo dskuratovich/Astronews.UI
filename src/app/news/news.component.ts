@@ -212,11 +212,7 @@ export class NewsComponent {
         let newsCache: NewsCache;
         newsCache = { nextUrl: responseData.next, data: this.data };
         this.cacheService.set(key, newsCache);
-        if (responseData.next) {
-          this.isDataAvailable = true;
-        } else {
-          this.isDataAvailable = false;
-        }
+        responseData.next ? this.isDataAvailable = true : this.isDataAvailable = false;
       }
     } catch (error) {
       this.errorService.sendError(
@@ -234,11 +230,7 @@ export class NewsComponent {
         let newsCache: NewsCache;
         newsCache = { nextUrl: v.next, data: v.results };
         this.cacheService.set(key, newsCache);
-        if (!v.next) {
-          this.isDataAvailable = false;
-        } else {
-          this.isDataAvailable = true;
-        }
+        v.next ? this.isDataAvailable = true : this.isDataAvailable = false;
       },
       error: (e) => {
         this.errorService.sendError(
