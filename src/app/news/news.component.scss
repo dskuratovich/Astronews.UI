@@ -100,19 +100,3 @@ a:hover,
 a:focus {
   color: var(--highlight-color);
 }
-
-.pagination-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 50px;
-}
-
-.pagination-controls button {
-  background-color: var(--button-bg-color);
-  color: var(--button-color);
-  border: none;
-  text-decoration: none;
-  display: inline-block;
-  padding: 15px 32px;
-}

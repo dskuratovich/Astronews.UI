@@ -59,3 +59,19 @@ p, h1, h2, h3, h4, h5, h6 {
   padding-bottom: 18%;
   text-align: center;
 }
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.pagination-controls button {
+  background-color: var(--button-bg-color);
+  color: var(--button-color);
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  padding: 15px 32px;
+}
