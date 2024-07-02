@@ -27,3 +27,7 @@
     </div>
   </article>
 </section>
+
+<div *ngIf="isSearchMode" class="pagination-controls">
+  <button [disabled]="!isDataAvailable" (click)="nextPage()">Next</button>
+</div>

@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, numberAttribute } from '@angular/core';
 import { DataService } from '../data.service';
 import { ErrorService } from '../error.service';
 import { Router } from '@angular/router';
 import { Data } from '../models/gallery.root.model';
 import { PromptService } from '../prompt.service';
 import { SearchService } from '../search.service';
-import { parseSearchTerm } from '../search.util';
+import { parseSearchTerm, parseSearchValue } from '../search.util';
 import { UrlBuilderService } from '../url-builder.service';
 import { CachingService } from '../caching.service';
 import { lastValueFrom } from 'rxjs';
+import { GalleryCache } from '../models/gallery-cache-model';
 
 @Component({
   selector: 'app-nasa-gallery',
@@ -17,7 +18,9 @@ import { lastValueFrom } from 'rxjs';
 })
 export class NasaGalleryComponent {
   data: Data[] = [];
-  isDataUpdated: boolean = false;
+  private cacheKeyword: string = '';
+  isSearchMode: boolean = false;
+  isDataAvailable: boolean = false;
 
   constructor(
     private apiCaller: DataService,
@@ -25,159 +28,241 @@ export class NasaGalleryComponent {
     private router: Router,
     private promptService: PromptService,
     private searchService: SearchService,
-    private urlBuilder: UrlBuilderService,
+    urlBuilder: UrlBuilderService,
     private cacheService: CachingService
   ) {
     this.searchService.searchTerm$.subscribe((term) => {
-      const { property, value } = parseSearchTerm(term);
-      if (property === null && value != '') {
-        let cache = cacheService.get(value);
+      if (term && term.length > 2) {
+        const { property, value } = parseSearchTerm(term);
+        this.isSearchMode = value !== '';
+
+        if (this.isSearchMode && property != null) {
+          this.cacheKeyword = term;
+
+          switch (property?.toLowerCase()) {
+            case 't':
+              let cache_t = this.cacheService.get(this.cacheKeyword);
+
+              if (cache_t) {
+                this.data = cache_t.data;
+                this.promptService.LibraryNext = cache_t.nextUrl;
+              } else {
+                let urlT = urlBuilder.getGalleryUrl(
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  value
+                );
+
+                this.clearApiCall(urlT, this.cacheKeyword);
+              }
+              break;
+            case 'd':
+              let cache_d = this.cacheService.get(this.cacheKeyword);
+
+              if (cache_d) {
+                this.data = cache_d.data;
+                this.promptService.LibraryNext = cache_d.nextUrl;
+              } else {
+                let urlD = urlBuilder.getGalleryUrl(
+                  undefined,
+                  undefined,
+                  undefined,
+                  value
+                );
+
+                this.clearApiCall(urlD, this.cacheKeyword);
+              }
+              break;
+            case 'c':
+              let cache_c = this.cacheService.get(this.cacheKeyword);
+
+              if (cache_c) {
+                this.data = cache_c.data;
+                this.promptService.LibraryNext = cache_c.nextUrl;
+              } else {
+                let urlC = urlBuilder.getGalleryUrl(
+                  undefined,
+                  undefined,
+                  value
+                );
+
+                this.clearApiCall(urlC, this.cacheKeyword);
+              }
+              break;
+            case 'dc':
+              let cache_dc = this.cacheService.get(this.cacheKeyword);
+
+              if (cache_dc) {
+                this.data = cache_dc.data;
+                this.promptService.LibraryNext = cache_dc.nextUrl;
+              } else {
+                let urlDC = urlBuilder.getGalleryUrl(
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  value
+                );
+
+                this.clearApiCall(urlDC, this.cacheKeyword);
+              }
+              break;
+            case 'k':
+              let cache_k = this.cacheService.get(this.cacheKeyword);
+
+              if (cache_k) {
+                this.data = cache_k.data;
+                this.promptService.LibraryNext = cache_k.nextUrl;
+              } else {
+                let urlK = urlBuilder.getGalleryUrl(
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  parseSearchValue(value)
+                );
+
+                this.clearApiCall(urlK, this.cacheKeyword);
+              }
+              break;
+            case 'ni':
+              let cache_p = this.cacheService.get(this.cacheKeyword);
+
+              if (cache_p) {
+                this.data = cache_p.data;
+                this.promptService.LibraryNext = cache_p.nextUrl;
+              } else {
+                let urlP = urlBuilder.getGalleryUrl(
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  value
+                );
+
+                this.clearApiCall(urlP, this.cacheKeyword);
+              }
+              break;
+          }
+        } else if (this.isSearchMode) {
+          this.cacheKeyword = value;
+          let cache = cacheService.get(value);
+
+          if (cache) {
+            this.data = cache.data;
+            this.promptService.LibraryNext = cache.nextUrl;
+          } else {
+            let url = urlBuilder.getGalleryUrl(undefined, value);
+            this.clearApiCall(url, value);
+          }
+        }
+      } else {
+        let urlEmpty = urlBuilder.getGalleryUrl();
+        this.cacheKeyword = urlEmpty;
+        let cache = cacheService.get(this.cacheKeyword);
 
         if (cache) {
-          this.data = cache;
+          this.data = cache.data;
+          this.promptService.LibraryNext = cache.nextUrl;
         } else {
-          let url = urlBuilder.getGalleryUrl(undefined, value);
-          this.clearApiCall(url, value);
-        }
-      }
-      if (property === null && value == '') {
-        let cache = cacheService.get('gallery');
-
-        if (cache) {
-          this.data = cache;
-        } else {
-          this.clearApiCall(this.urlBuilder.getGalleryUrl(), 'gallery');
-        }
-      }
-      if (property != null && value != '') {
-        switch (property?.toLowerCase()) {
-          case 't':
-            let cache_t = this.cacheService.get(term);
-
-            if (cache_t && !this.isDataUpdated) {
-              this.data = cache_t;
-            } else {
-              let urlT = urlBuilder.getGalleryUrl(
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                value
-              );
-              this.clearApiCall(urlT, value);
-            }
-            break;
-          case 'd':
-            let cache_d = this.cacheService.get(term);
-
-            if (cache_d && !this.isDataUpdated) {
-              this.data = cache_d;
-            } else {
-              let urlD = urlBuilder.getGalleryUrl(
-                undefined,
-                undefined,
-                undefined,
-                value
-              );
-              this.clearApiCall(urlD, value);
-            }
-            break;
-          case 'c':
-            let cache_c = this.cacheService.get(term);
-
-            if (cache_c && !this.isDataUpdated) {
-              this.data = cache_c;
-            } else {
-              let urlC = urlBuilder.getGalleryUrl(undefined, undefined, value);
-              this.clearApiCall(urlC, value);
-            }
-            break;
-          case 'dc':
-            let cache_dc = this.cacheService.get(term);
-
-            if (cache_dc && !this.isDataUpdated) {
-              this.data = cache_dc;
-            } else {
-              let urlDC = urlBuilder.getGalleryUrl(
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                value
-              );
-              this.clearApiCall(urlDC, value);
-            }
-            break;
-          default:
-            let cache = cacheService.get('gallery');
-
-            if (cache) {
-              this.data = cache;
-            } else {
-              this.clearApiCall(this.urlBuilder.getGalleryUrl(), 'gallery');
-            }
-            break;
+          this.clearApiCall(urlEmpty, this.cacheKeyword);
         }
       }
     });
   }
 
-  onScrollDown(): void {
-    this.apiCall(this.promptService.LibraryNext);
+  async onScrollDown() {
+    if (!this.isSearchMode) {
+      await this.apiCall(this.promptService.LibraryNext, this.cacheKeyword);
+    }
   }
 
-  async apiCall(url: string): Promise<void> {
+  private async apiCall(url: string, key: string) {
+    if (!url) {
+      this.isDataAvailable = false;
+      return;
+    }
     try {
-      const responseData$ = this.apiCaller.getNasaGallery(url);
-      const responseData = await lastValueFrom(responseData$);
+      const responseData = await lastValueFrom(
+        this.apiCaller.getNasaGallery(url)
+      );
 
-      let cache = this.cacheService.get('gallery');
-
-      if (cache) {
-        cache = [...cache, ...responseData.collection.items];
-        this.cacheService.set('gallery', cache);
-        this.data = cache;
-      } else {
-        this.cacheService.set('gallery', responseData.collection.items);
+      if (responseData.collection.items.length == 0) {
+        return;
       }
-      this.isDataUpdated = true;
+
+      let nextUrl = responseData.collection.links.find(
+        (x) => x.prompt == 'Next'
+      )?.href;
+
+      if (nextUrl) {
+        if (nextUrl != url) {
+          this.data = [...this.data, ...responseData.collection.items];
+          this.promptService.LibraryNext = nextUrl;
+          let galleryCache: GalleryCache;
+          galleryCache = { nextUrl: nextUrl, data: this.data };
+          this.cacheService.set(key, galleryCache);
+          this.isDataAvailable = true;
+        }
+      } else {
+        this.isDataAvailable = false;
+      }
     } catch (error) {
       this.errorService.sendError(
-        'Error occurred during fetching the data. Please, try again shortly.'
+        'Error occured during data fetch. Please, try again shortly.'
       );
       this.router.navigate(['/Error']);
     }
   }
 
-  clearApiCall(url: string, key: string): void {
-    this.apiCaller.getNasaGallery(url).subscribe({
-      next: (v) => {
-        this.data = v.collection.items;
+  private async clearApiCall(url: string, key: string) {
+    try {
+      const responseData = await lastValueFrom(
+        this.apiCaller.getNasaGallery(url)
+      );
 
-        for (let link of v.collection.links) {
-          if (link.prompt == 'Next') {
-            this.promptService.LibraryNext = link.href;
-            break;
-          }
-        }
+      if (responseData.collection.items.length == 0) {
+        return;
+      }
 
-        this.cacheService.set(key, this.data);
-      },
-      error: (e) => {
-        this.errorService.sendError(
-          'Error occured during fetching the data. Please, try again shortly.'
-        );
-        this.router.navigate(['/Error']);
-      },
-    });
+      this.data = responseData.collection.items;
+
+      let nextUrlRetrieved = responseData.collection.links.find(
+        (x) => x.prompt == 'Next'
+      )?.href;
+
+      let galleryCache = {} as GalleryCache;
+
+      galleryCache.data = responseData.collection.items;
+
+      const nextUrl = nextUrlRetrieved || '';
+      galleryCache.nextUrl = nextUrl;
+      this.isDataAvailable = !!nextUrl;
+      this.promptService.LibraryNext = nextUrl;
+
+      this.cacheService.set(key, galleryCache);
+    } catch (error) {
+      this.errorService.sendError(
+        'Error occured during data fetch. Please, try again shortly.'
+      );
+      this.router.navigate(['/Error']);
+    }
+  }
+
+  async nextPage() {
+    await this.apiCall(this.promptService.LibraryNext, this.cacheKeyword);
   }
 }
