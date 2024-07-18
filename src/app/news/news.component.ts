@@ -131,12 +131,12 @@ export class NewsComponent {
                 this.clearApiCall(urlPB, this.cacheKeyword);
               }
               break;
-            case 'ba':
-              let cache_ba = this.cacheService.get(this.cacheKeyword);
+            case 'pa':
+              let cache_pa = this.cacheService.get(this.cacheKeyword);
 
-              if (cache_ba) {
-                this.data = cache_ba.data;
-                this.promptService.NewsNext = cache_ba.nextUrl;
+              if (cache_pa) {
+                this.data = cache_pa.data;
+                this.promptService.NewsNext = cache_pa.nextUrl;
               } else {
                 let urlPA = urlBuilder.getNewsUrl(undefined, undefined, value);
 
