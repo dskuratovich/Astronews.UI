@@ -8,6 +8,7 @@ html {
   overflow-x: hidden;
   height: 100%;
   margin: 0;
+  font-size: 16px;
 }
 
 body {
@@ -15,7 +16,7 @@ body {
   margin: 0;
   text-decoration: none;
   text-transform: none;
-  font-size: 0.9vw;
+  font-size: 1rem;
   font-weight: 400;
   font-style: normal;
   font-family: "Source Sans 3", sans-serif;
@@ -46,7 +47,42 @@ p, h1, h2, h3, h4, h5, h6 {
   padding-right: 90px;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+
+  @media (max-width: 413px) {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 95%;
+  }
+
+  @media (min-width: 414px) and (max-width: 767px) {
+    padding-left: 24px;
+    padding-right: 24px;
+    width: 87%;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1199px) and (orientation: landscape) {
+    padding-left: 38px;
+    padding-right: 38px;
+    width: 82%;
+  }
+
+  @media (min-width: 768px) {
+    padding-left: 54px;
+    padding-right: 54px;
+    width: 82%;
+  }
+
+  @media (min-width: 1200px) {
+    padding-left: 68px;
+    padding-right: 68px;
+    width: 86%;
+  }
+
+  @media (min-width: 1600px) {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 74%;
+  }
 }
 
 .info-text {
