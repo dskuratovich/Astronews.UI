@@ -11,21 +11,21 @@
 
 @media (max-width: 7680px) {
   .content {
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: space-between;
   }
 }
 
 @media (max-width: 4096px) {
   .content {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
   }
 }
 
 @media (max-width: 2560px) {
   .content {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
   }
 }
