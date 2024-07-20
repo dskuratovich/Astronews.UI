@@ -21,6 +21,7 @@ export class NewsComponent {
   private cacheKeyword: string = '';
   isSearchMode: boolean = false;
   isDataAvailable: boolean = false;
+  private currentUrl: string = '/News';
 
   constructor(
     private apiCaller: DataService,
@@ -218,9 +219,9 @@ export class NewsComponent {
       }
     } catch (error) {
       this.errorService.sendError(
-        'Error occured during data fetch. Please, try again shortly.'
+        'Error occured during data fetch on News page. Please, try again shortly.'
       );
-      this.router.navigate(['/Error']);
+      this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
   }
 
@@ -236,9 +237,9 @@ export class NewsComponent {
       },
       error: (e) => {
         this.errorService.sendError(
-          'Error occured during data fetch. Please, try again shortly.'
+          'Error occured during clearing API call on News page. Please, try again shortly.'
         );
-        this.router.navigate(['/Error']);
+        this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
       },
     });
   }

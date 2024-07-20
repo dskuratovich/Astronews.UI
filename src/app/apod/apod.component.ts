@@ -20,6 +20,7 @@ export class APODComponent {
   isDataUpdated: boolean = false;
   private readonly CacheKeyword: string = 'APOD_DEFAULT';
   isSearchMode: boolean = false;
+  private currentUrl: string = '/APOD';
 
   constructor(
     private apiCaller: DataService,
@@ -169,9 +170,9 @@ export class APODComponent {
 
     } catch (error) {
       this.errorService.sendError(
-        'Error occurred during fetching the data. Please, try again shortly.'
+        'Error occurred during fetching the data on APOD page. Please, try again shortly.'
       );
-      this.router.navigate(['/Error']);
+      this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
   }
 
