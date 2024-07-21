@@ -21,6 +21,7 @@ import { SortPipe } from './shared/sort.pipe';
 import { DataSortPipe } from './data-sort.pipe';
 import { BackToTopComponent } from './back-to-top/back-to-top.component';
 import { DateFormatPipe } from './date-format.pipe';
+import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DateFormatPipe } from './date-format.pipe';
     //MarsPhotosSpiritComponent,
     DataSortPipe,
     BackToTopComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    MobileMenuComponent
   ],
   imports: [
     BrowserModule,
