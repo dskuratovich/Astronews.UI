@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  toggleTheme() {
+  public toggleTheme() {
     this.isLightTheme = !this.isLightTheme;
 
     document.body.setAttribute(
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  clearSearch() {
+  public clearSearch() {
     this.searchService.setSearchTerm('');
     this.searchTerm = '';
   }
