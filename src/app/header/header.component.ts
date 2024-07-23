@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private searchService: SearchService) {}
   ngOnInit(): void {
-    this.searchSubject.pipe(debounceTime(570)).subscribe((searchText) => {
+    this.searchSubject.pipe(debounceTime(730)).subscribe((searchText) => {
       this.searchService.setSearchTerm(searchText);
     });
   }
