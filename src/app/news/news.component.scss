@@ -102,40 +102,40 @@
 
 .content {
   @media (max-width: 413px) {
-    padding-top: 120px;
+    padding-top: 35px;
     grid-template-columns: 1fr;
     justify-content: center;
     font-size: 1.26rem;
   }
 
   @media (min-width: 414px) and (max-width: 767px) {
-    padding-top: 120px;
+    padding-top: 35px;
     grid-template-columns: 1fr;
     justify-content: center;
     font-size: 1.25rem;
   }
 
   @media (min-width: 1024px) and (max-width: 1199px) and (orientation: landscape) {
-    padding-top: 120px;
+    padding-top: 35px;
     grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
     font-size: 1.14rem;
   }
 
   @media (min-width: 768px) {
-    padding-top: 120px;
+    padding-top: 35px;
     grid-template-columns: 1fr;
     font-size: 1.2rem;
   }
 
   @media (min-width: 1200px) {
-    padding-top: 120px;
+    padding-top: 35px;
     grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
     font-size: 1.17rem;
   }
 
   @media (min-width: 1600px) {
     grid-template-columns: repeat(auto-fit, minmax(530px, 1fr));
-    padding-top: 120px;
+    padding-top: 35px;
     font-size: 1.14rem;
   }
 
