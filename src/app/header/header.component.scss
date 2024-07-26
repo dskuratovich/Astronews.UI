@@ -171,3 +171,27 @@ ul {
     border-radius: 50%;
   }
 }
+
+.mobile-menu-button {
+  display: none;
+}
+
+.mobile-menu {
+  width: 100vw;
+  height: 100vh;
+}
+
+@media (max-width: 767px) {
+  .nav-menu {
+    visibility: collapse;
+  }
+  .search-bar {
+    visibility: collapse;
+  }
+  .theme-switcher {
+    visibility: collapse;
+  }
+  .mobile-menu-button {
+    display: block;
+  }
+}

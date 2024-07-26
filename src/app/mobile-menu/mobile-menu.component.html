@@ -1,6 +1,65 @@
-
-<div class="mobile-menu">
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
-      <i class="fa fa-bars"></i>
-    </a>
+<div class="flex-container main-container">
+  <div>
+    <button class="close-button" (click)="closeMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M19.293 4.293a1 1 0 0 1 1.414 1.414L5.414 20.707a1 1 0 0 1-1.414-1.414L19.293 4.293zM4.293 5.293a1 1 0 0 1 1.414-1.414L20.707 18.293a1 1 0 0 1-1.414 1.414L4.293 5.293z"/>
+      </svg>
+    </button>    
   </div>
+  <a class="flex-container logo-link" routerLink="/News">
+    <img
+      src="assets/images/AstronewsLogo.png"
+      alt="Astronaut with newspaper floating in space"
+    />
+    Astronews
+  </a>
+
+  <nav class="nav-menu">
+    <ul class="flex-container nav-link-list">
+      <li>
+        <a
+          class="nav-link"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="/News"
+          >News</a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link"
+          routerLinkActive="active-link"
+          routerLink="/MarsPhotos/Curiosity"
+        >
+          Curiosity
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav-link"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="/NasaGallery"
+        >
+          Nasa
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav-link"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="/APOD"
+        >
+          APOD
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="theme-switcher">
+    <label class="switch"
+      ><input type="checkbox" [checked]="isLightTheme" (change)="toggleTheme()"
+    />
+  <span class="slider round"></span></label>
+  </div>
+</div>

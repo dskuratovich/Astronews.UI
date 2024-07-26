@@ -1,0 +1,227 @@
+// .dropdown {
+//   position: relative;
+//   display: inline-block;
+// }
+
+// .dropdown-menu {
+//   display: none;
+//   position: absolute;
+//   background-color: var(--second-bg-color);
+//   min-width: 140px;
+//   z-index: 1;
+//   border: 1px solid var(--highlight-color);
+// }
+
+// .dropdown-menu li {
+//   border: 1px solid var(--highlight-color);
+// }
+
+// .dropdown-menu li a {
+//   padding: 12px 16px;
+//   text-decoration: none;
+//   display: block;
+// }
+
+// .dropdown:hover .dropdown-menu {
+//   display: block;
+// }
+
+// .search-bar {
+//   margin-right: 20px;
+// }
+
+// .search-bar > input {
+//   padding: 5px;
+//   background-color: var(--search-bar-bg-color);
+//   color: var(--search-bar-text-color);
+//   border: none;
+// }
+
+// .search-bar > button {
+//   background-color: var(--search-bar-bg-color);
+//   color: var(--search-bar-text-color);
+//   border: none;
+//   border-left: 1px solid #000;
+//   padding: 5px;
+// }
+
+// .search-bar > button:hover {
+//   background-color: #ab1e1e;
+//   transition: 300ms background-color;
+// }
+
+.theme-switcher {
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--button-bg-color);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--button-color);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: var(--button-bg-color);
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--highlight-color);
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+}
+
+.main-container {
+  background-color: var(--second-bg-color);
+  color: var(--second-text-color);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;  // Ensure scroll if content overflows
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column; // Stack children vertically
+  width: 100%;
+  max-width: 767px; // Limit max width if desired
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%; // Ensure it takes full width
+}
+
+.nav-link-list {
+  width: 100%; // Ensure full width
+  display: flex;
+  flex-direction: column; // Stack links vertically
+  align-items: center;
+}
+
+.nav-link-list > li:not(:last-child) {
+  margin-bottom: 15px; // Space between items
+}
+
+.nav-link-list a {
+  padding: 10px 20px; // Adjust padding for better touch targets
+  text-align: center; // Center text
+  display: block; // Make links block level for full width
+  width: 100%;
+  color: var(--second-text-color);
+  text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--second-link-hover-color);
+  border-bottom: 2px solid var(--second-link-hover-color);
+}
+
+.logo-link {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 24px;
+  color: var(--second-text-color);
+  margin-bottom: 30px; // Space below logo
+}
+
+.theme-switcher {
+  margin-top: 20px; // Space above theme switcher
+}
+
+.search-bar {
+  margin: 20px 0; // Space above and below search bar
+  width: 100%; // Full width
+}
+
+.search-bar > input {
+  padding: 5px;
+  background-color: var(--search-bar-bg-color);
+  color: var(--search-bar-text-color);
+  border: none;
+  width: calc(100% - 60px); // Full width minus button width
+}
+
+.search-bar > button {
+  background-color: var(--search-bar-bg-color);
+  color: var(--search-bar-text-color);
+  border: none;
+  border-left: 1px solid #000;
+  padding: 5px;
+  width: 60px; // Fixed width
+}
+
+.search-bar > button:hover {
+  background-color: #ab1e1e;
+  transition: 300ms background-color;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  svg {
+    fill: var(--close-icon-color);
+    width: 24px;
+    height: 24px;
+  }
+  
+  &:hover svg {
+    fill: var(--close-icon-hover-color);
+  }
+}

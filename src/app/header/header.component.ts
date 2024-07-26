@@ -10,6 +10,8 @@ import { Subject, debounceTime } from 'rxjs';
 export class HeaderComponent implements OnInit {
   public isLightTheme = false;
   public searchTerm: string = '';
+  public isVisible = false;
+
   searchSubject = new Subject<string>();
 
   constructor(private searchService: SearchService) {}
@@ -31,5 +33,17 @@ export class HeaderComponent implements OnInit {
   public clearSearch() {
     this.searchService.setSearchTerm('');
     this.searchTerm = '';
+  }
+
+  public toggleMenu() {
+    this.isVisible = !this.isVisible;
+  }
+
+  public onMenuVisibilityChange() {
+    this.toggleMenu();
+  }
+
+  public onLightThemeChange(value: boolean) {
+    this.isLightTheme = value;
   }
 }

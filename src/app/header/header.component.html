@@ -85,5 +85,13 @@
         <span class="slider round"></span>
       </label>
     </div>
+
+    <div class="mobile-menu-button">
+      <a href="javascript:void(0);" class="icon" (click)="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <app-mobile-menu *ngIf="isVisible" [isLightTheme]="isLightTheme" [isVisible]="isVisible" (isVisibleChange)="onMenuVisibilityChange()" (isLightThemeChange)="onLightThemeChange($event)" class="mobile-menu"></app-mobile-menu>
   </div>
 </header>
