@@ -176,6 +176,14 @@ ul {
   display: none;
 }
 
+.mobile-menu-button .icon .fa-bars {
+  color: var(--icon-color);
+}
+
+.mobile-menu-button .icon .fa-bars:hover {
+  color: var(--icon-color-hover);
+}
+
 .mobile-menu {
   width: 100vw;
   height: 100vh;

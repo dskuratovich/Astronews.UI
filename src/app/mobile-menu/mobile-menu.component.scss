@@ -124,39 +124,38 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: auto;  // Ensure scroll if content overflows
+  overflow: auto;
 }
 
 .flex-container {
   display: flex;
   align-items: center;
-  flex-direction: column; // Stack children vertically
-  width: 100%;
-  max-width: 767px; // Limit max width if desired
+  flex-direction: column;
+  max-width: 767px;
 }
 
 ul {
   margin: 0;
   padding: 0;
   list-style: none;
-  width: 100%; // Ensure it takes full width
+  width: 100%;
 }
 
 .nav-link-list {
-  width: 100%; // Ensure full width
+  width: 100%;
   display: flex;
-  flex-direction: column; // Stack links vertically
+  flex-direction: column;
   align-items: center;
 }
 
 .nav-link-list > li:not(:last-child) {
-  margin-bottom: 15px; // Space between items
+  margin-bottom: 15px;
 }
 
 .nav-link-list a {
-  padding: 10px 20px; // Adjust padding for better touch targets
-  text-align: center; // Center text
-  display: block; // Make links block level for full width
+  padding: 10px 20px;
+  text-align: center;
+  display: block;
   width: 100%;
   color: var(--second-text-color);
   text-decoration: none;
@@ -173,16 +172,17 @@ ul {
   font-weight: bold;
   font-size: 24px;
   color: var(--second-text-color);
-  margin-bottom: 30px; // Space below logo
+  margin-bottom: 30px;
+  gap: 20px;
 }
 
 .theme-switcher {
-  margin-top: 20px; // Space above theme switcher
+  margin-top: 20px;
 }
 
 .search-bar {
-  margin: 20px 0; // Space above and below search bar
-  width: 100%; // Full width
+  margin: 20px 0;
+  width: 100%;
 }
 
 .search-bar > input {
@@ -190,7 +190,7 @@ ul {
   background-color: var(--search-bar-bg-color);
   color: var(--search-bar-text-color);
   border: none;
-  width: calc(100% - 60px); // Full width minus button width
+  width: calc(100% - 60px);
 }
 
 .search-bar > button {
@@ -199,7 +199,7 @@ ul {
   border: none;
   border-left: 1px solid #000;
   padding: 5px;
-  width: 60px; // Fixed width
+  width: 60px;
 }
 
 .search-bar > button:hover {
@@ -216,12 +216,12 @@ ul {
   right: 20px;
 
   svg {
-    fill: var(--close-icon-color);
+    fill: var(--close-button-color);
     width: 24px;
     height: 24px;
   }
   
   &:hover svg {
-    fill: var(--close-icon-hover-color);
+    fill: var(--close-button-color-hover);
   }
 }
