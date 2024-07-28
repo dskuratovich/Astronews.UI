@@ -21,7 +21,7 @@ export class NasaGalleryComponent {
   private cacheKeyword: string = '';
   isSearchMode: boolean = false;
   isDataAvailable: boolean = false;
-  currentUrl: string = '/NasaGallery';
+  private readonly currentUrl: string = '/NasaGallery';
 
   constructor(
     private apiCaller: DataService,
@@ -223,7 +223,7 @@ export class NasaGalleryComponent {
       }
     } catch (error) {
       this.errorService.sendError(
-        'Error occured during data fetch on NASA Gallery. Please, try again shortly.'
+        'Error occured during data fetch. Please, try again shortly.'
       );
       this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
@@ -258,7 +258,7 @@ export class NasaGalleryComponent {
     } catch (error) {
       
       this.errorService.sendError(
-        'Error occured during clearing API call on NASA Gallery. Please, try again shortly.'
+        'Error occured during data fetch. Please, try again shortly.'
       );
       this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
