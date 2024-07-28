@@ -21,6 +21,7 @@ export class NasaGalleryComponent {
   private cacheKeyword: string = '';
   isSearchMode: boolean = false;
   isDataAvailable: boolean = false;
+  private readonly currentUrl: string = '/NasaGallery';
 
   constructor(
     private apiCaller: DataService,
@@ -224,7 +225,7 @@ export class NasaGalleryComponent {
       this.errorService.sendError(
         'Error occured during data fetch. Please, try again shortly.'
       );
-      this.router.navigate(['/Error']);
+      this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
   }
 
@@ -255,10 +256,11 @@ export class NasaGalleryComponent {
 
       this.cacheService.set(key, galleryCache);
     } catch (error) {
+      
       this.errorService.sendError(
         'Error occured during data fetch. Please, try again shortly.'
       );
-      this.router.navigate(['/Error']);
+      this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
   }
 

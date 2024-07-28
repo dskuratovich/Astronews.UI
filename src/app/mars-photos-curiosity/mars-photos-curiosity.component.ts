@@ -25,6 +25,7 @@ export class MarsPhotosCuriosityComponent {
   private solDirection: boolean = false;
   private scrollDownTriggered: boolean = false;
   private edSearch: boolean = false;
+  private currentUrl: string = '/MarsPhotos/Curiosity';
 
   constructor(
     private apiCaller: DataService,
@@ -148,10 +149,11 @@ export class MarsPhotosCuriosityComponent {
         this.cacheService.set(url, this.data);
       }
     } catch (error) {
+      let currentUrl = this.router.url;
       this.errorService.sendError(
         'Error occurred during fetching the data. Please, try again shortly.'
       );
-      this.router.navigate(['/Error']);
+      this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
   }
 
@@ -170,10 +172,11 @@ export class MarsPhotosCuriosityComponent {
         this.cacheService.set(url, this.data);
       }
     } catch (error) {
+  
       this.errorService.sendError(
-        'Error occurred during fetching the data. Please try again shortly.'
+        'Error occurred during fetching the data. Please, try again shortly.'
       );
-      this.router.navigate(['/Error']);
+      this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
   }
 

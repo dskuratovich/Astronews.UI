@@ -21,6 +21,7 @@ export class NewsComponent {
   private cacheKeyword: string = '';
   isSearchMode: boolean = false;
   isDataAvailable: boolean = false;
+  private readonly currentUrl: string = '/News';
 
   constructor(
     private apiCaller: DataService,
@@ -131,12 +132,12 @@ export class NewsComponent {
                 this.clearApiCall(urlPB, this.cacheKeyword);
               }
               break;
-            case 'ba':
-              let cache_ba = this.cacheService.get(this.cacheKeyword);
+            case 'pa':
+              let cache_pa = this.cacheService.get(this.cacheKeyword);
 
-              if (cache_ba) {
-                this.data = cache_ba.data;
-                this.promptService.NewsNext = cache_ba.nextUrl;
+              if (cache_pa) {
+                this.data = cache_pa.data;
+                this.promptService.NewsNext = cache_pa.nextUrl;
               } else {
                 let urlPA = urlBuilder.getNewsUrl(undefined, undefined, value);
 
@@ -220,7 +221,7 @@ export class NewsComponent {
       this.errorService.sendError(
         'Error occured during data fetch. Please, try again shortly.'
       );
-      this.router.navigate(['/Error']);
+      this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
   }
 
@@ -238,7 +239,7 @@ export class NewsComponent {
         this.errorService.sendError(
           'Error occured during data fetch. Please, try again shortly.'
         );
-        this.router.navigate(['/Error']);
+        this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
       },
     });
   }

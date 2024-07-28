@@ -18,6 +18,10 @@ ul {
   align-items: center;
 }
 
+.flex-container a p{
+font-size: 1.4vw;
+}
+
 .active-link {
   color: var(--second-link-hover-color);
   border-bottom: 2px solid var(--second-link-hover-color);
@@ -28,6 +32,7 @@ ul {
 }
 
 .nav-link-list a {
+  font-size: 1.2vw;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -88,6 +93,7 @@ ul {
 }
 
 .search-bar {
+  display: flex;
   margin-right: 20px;
 }
 
