@@ -151,7 +151,7 @@ export class MarsPhotosCuriosityComponent {
     } catch (error) {
       let currentUrl = this.router.url;
       this.errorService.sendError(
-        'Error occurred during clearing API call on Curiosity page. Please, try again shortly.'
+        'Error occurred during fetching the data. Please, try again shortly.'
       );
       this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
@@ -174,7 +174,7 @@ export class MarsPhotosCuriosityComponent {
     } catch (error) {
   
       this.errorService.sendError(
-        'Error occurred during fetching the data on Curiosity page. Please, try again shortly.'
+        'Error occurred during fetching the data. Please, try again shortly.'
       );
       this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
     }
