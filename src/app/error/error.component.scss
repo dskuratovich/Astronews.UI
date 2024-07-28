@@ -1,18 +1,12 @@
-.container {
-  padding-top: 150px;
-  padding-bottom: 50px;
-  display: flex;
-  flex-direction: column;
-  height: 82vh;
-  width: 100vw;
-  margin-bottom: 20px;
-}
-
 .error-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 82vh;
+  margin-bottom: 20px;
+  padding-top: 150px;
+  padding-bottom: 50px;
 }
 
 button {
