@@ -20,8 +20,8 @@ export class ErrorComponent implements OnInit {
 
   private getAndClearLocalStorageUrl(): string | null {
     try {
-      const url = localStorage.getItem('errorReturnUrl');
-      localStorage.removeItem('errorReturnUrl');
+      const url = localStorage.getItem('returnUrl');
+      localStorage.removeItem('returnUrl');
       return url;
     } catch (e) {
       console.error('Error accessing localStorage:', e);
