@@ -193,6 +193,12 @@ ul {
 .mobile-menu {
   width: 100vw;
   height: 100vh;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {
