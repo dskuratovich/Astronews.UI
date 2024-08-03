@@ -22,6 +22,7 @@ import { DataSortPipe } from './data-sort.pipe';
 import { BackToTopComponent } from './back-to-top/back-to-top.component';
 import { DateFormatPipe } from './date-format.pipe';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
     DataSortPipe,
     BackToTopComponent,
     DateFormatPipe,
-    MobileMenuComponent
+    MobileMenuComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
