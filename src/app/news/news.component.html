@@ -13,6 +13,7 @@
       class="save-icon"
       (mouseenter)="onMouseEnter(i)"
       (mouseleave)="onMouseLeave(i)"
+      (click)="onMouseClick(i)"
     >
       <use [attr.xlink:href]="getIcon(i)"></use>
     </svg>

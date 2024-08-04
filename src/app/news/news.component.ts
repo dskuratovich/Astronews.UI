@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { NewsModel } from '../models/news.model';
 import { DataService } from '../data.service';
 import { ErrorService } from '../error.service';
@@ -23,7 +23,8 @@ export class NewsComponent {
   isDataAvailable: boolean = false;
   private readonly currentUrl: string = '/News';
 
-  iconStates: string[] = [];
+  private iconStates: string[] = [];
+  private savedStates: boolean[] = [];
 
   private emptyStar = 'assets/icons/save-icons.svg#star-empty';
   private savedStar = 'assets/icons/save-icons.svg#star-saved';
@@ -192,6 +193,8 @@ export class NewsComponent {
         }
       }
     });
+
+    this.initializeState();
   }
 
   async onScrollDown() {
@@ -257,8 +260,8 @@ export class NewsComponent {
     await this.apiCall(this.promptService.NewsNext, this.cacheKeyword);
   }
 
-  private initializeIconStates() {
-    this.iconStates = this.data.map(() => this.emptyStar);
+  private initializeState() {
+    this.savedStates = this.data.map(() => false);
   }
 
   onMouseEnter(index: number) {
@@ -266,7 +269,19 @@ export class NewsComponent {
   }
 
   onMouseLeave(index: number) {
-    this.iconStates[index] = this.emptyStar;
+    if (!this.savedStates[index]) {
+      this.iconStates[index] = this.emptyStar;
+    }
+  }
+
+  onMouseClick(index: number) {
+    console.log('mouse clicked');
+    this.savedStates[index] = !this.savedStates[index];
+    this.iconStates[index] = this.savedStates[index]
+      ? this.savedStar
+      : this.emptyStar;
+    console.log(this.savedStates[index]);
+    console.log(this.iconStates[index]);
   }
 
   getIcon(index: number): string {
