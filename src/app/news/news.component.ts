@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { NewsModel } from '../models/news.model';
 import { DataService } from '../data.service';
 import { ErrorService } from '../error.service';
@@ -22,6 +22,11 @@ export class NewsComponent {
   isSearchMode: boolean = false;
   isDataAvailable: boolean = false;
   private readonly currentUrl: string = '/News';
+
+  iconStates: string[] = [];
+
+  private emptyStar = 'assets/icons/save-icons.svg#star-empty';
+  private savedStar = 'assets/icons/save-icons.svg#star-saved';
 
   constructor(
     private apiCaller: DataService,
@@ -221,7 +226,9 @@ export class NewsComponent {
       this.errorService.sendError(
         'Error occured during data fetch. Please, try again shortly.'
       );
-      this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
+      this.router.navigate(['/Error'], {
+        state: { returnUrl: this.currentUrl },
+      });
     }
   }
 
@@ -239,12 +246,34 @@ export class NewsComponent {
         this.errorService.sendError(
           'Error occured during data fetch. Please, try again shortly.'
         );
-        this.router.navigate(['/Error'], { state: { returnUrl: this.currentUrl } });
+        this.router.navigate(['/Error'], {
+          state: { returnUrl: this.currentUrl },
+        });
       },
     });
   }
 
   async nextPage() {
     await this.apiCall(this.promptService.NewsNext, this.cacheKeyword);
+  }
+
+  private initializeIconStates() {
+    this.iconStates = this.data.map(() => this.emptyStar);
+  }
+
+  onMouseEnter(index: number) {
+    this.iconStates[index] = this.savedStar;
+  }
+
+  onMouseLeave(index: number) {
+    this.iconStates[index] = this.emptyStar;
+  }
+
+  getIcon(index: number): string {
+    if (this.iconStates[index]) {
+      return this.iconStates[index];
+    } else {
+      return this.emptyStar;
+    }
   }
 }

@@ -8,9 +8,13 @@
   [infiniteScrollThrottle]="100"
   (scrolled)="onScrollDown()"
 >
-  <article class="tile" *ngFor="let item of data">
-    <svg class="save-icon">
-      <use xlink:href="assets/icons/save-icons.svg#star-empty"/>
+  <article class="tile" *ngFor="let item of data; let i = index">
+    <svg
+      class="save-icon"
+      (mouseenter)="onMouseEnter(i)"
+      (mouseleave)="onMouseLeave(i)"
+    >
+      <use [attr.xlink:href]="getIcon(i)"></use>
     </svg>
 
     <h2 *ngIf="item.image_url && item.title" style="text-align: center">
