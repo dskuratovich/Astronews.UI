@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiKeyService {
 
-  private apiKey: string = '0fu6kxm8VJ28tAbk0iRAfazBSiqBW5v344fYDIiR';
-
+  private apiKey: string = environment.secrets.api_key;
   constructor() { }
 
   setApiKey(key: string): void {
