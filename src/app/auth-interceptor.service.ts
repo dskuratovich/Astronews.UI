@@ -4,7 +4,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiKeyService } from './api-key.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment.prod.ts';
 
 @Injectable({
   providedIn: 'root'

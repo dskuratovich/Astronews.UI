@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment.prod.ts';
 import { SourceManagerService } from './source-manager.service';
 import { Rovers } from './models/rovers';
 import {
