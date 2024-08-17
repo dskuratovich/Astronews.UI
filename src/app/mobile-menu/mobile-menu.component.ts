@@ -24,6 +24,5 @@ export class MobileMenuComponent {
   public closeMenu() {
     this.isVisible = !this.isVisible;
     this.isVisibleChange.emit();
-    console.log(this.isVisible);
   }
 }

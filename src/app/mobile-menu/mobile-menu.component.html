@@ -4,7 +4,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path d="M19.293 4.293a1 1 0 0 1 1.414 1.414L5.414 20.707a1 1 0 0 1-1.414-1.414L19.293 4.293zM4.293 5.293a1 1 0 0 1 1.414-1.414L20.707 18.293a1 1 0 0 1-1.414 1.414L4.293 5.293z"/>
       </svg>
-    </button>    
+    </button>
   </div>
   <a class="flex-container logo-link" routerLink="/News">
     <img
@@ -22,16 +22,16 @@
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{ exact: true }"
           routerLink="/News"
-          >News</a
-        >
+          (click)="closeMenu()"
+          >News</a>
       </li>
       <li>
         <a
           class="nav-link"
           routerLinkActive="active-link"
           routerLink="/MarsPhotos/Curiosity"
-        >
-          Curiosity
+          (click)="closeMenu()"
+          >Curiosity
         </a>
       </li>
       <li>
@@ -40,8 +40,8 @@
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{ exact: true }"
           routerLink="/NasaGallery"
-        >
-          Nasa
+          (click)="closeMenu()"
+          >Nasa
         </a>
       </li>
       <li>
@@ -50,8 +50,8 @@
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{ exact: true }"
           routerLink="/APOD"
-        >
-          APOD
+          (click)="closeMenu()"
+          >APOD
         </a>
       </li>
     </ul>
