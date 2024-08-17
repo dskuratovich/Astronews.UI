@@ -179,7 +179,7 @@ export class APODComponent {
   private convertDateToString(givenDate: Date): string {
     let year = givenDate.getFullYear();
     let month = String(givenDate.getMonth() + 1).padStart(2, '0');
-    let day = String(givenDate.getDate()).padStart(2, '0');
+    let day = String(givenDate.getDate() - 1).padStart(2, '0');
 
     let yearString = `${year}-${month}-${day}`;
     return yearString;
