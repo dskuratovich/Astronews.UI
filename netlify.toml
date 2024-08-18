@@ -1,8 +1,8 @@
 [build]
-  command = "ng build"
-  publish = "dist"
+  command = "ng build --configuration production"
+  publish = "dist/astronews.ui"
 [build.environment]
-api_key = ""
+  api_key = ""
 [[redirects]]
   from = "/*"
   to = "/index.html"
