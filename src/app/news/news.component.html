@@ -9,14 +9,14 @@
   (scrolled)="onScrollDown()"
 >
   <article class="tile" *ngFor="let item of data; let i = index">
-    <svg
+    <!--<svg
       class="save-icon"
       (mouseenter)="onMouseEnter(i)"
       (mouseleave)="onMouseLeave(i)"
       (click)="onMouseClick(i)"
     >
       <use [attr.xlink:href]="getIcon(i)"></use>
-    </svg>
+    </svg>-->
 
     <h2 *ngIf="item.image_url && item.title" style="text-align: center">
       {{ item.title }}
