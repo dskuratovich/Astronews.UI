@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from '../environments/environment.prod.ts';
+import { environment } from '../environments/environment.prod';
 import { MarsRootLatestModel, MarsRootModel } from './models/mars.model';
 import { ApodModel } from './models/apod.model';
 import { NewsRootModel } from './models/news.root.model';

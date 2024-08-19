@@ -9,14 +9,15 @@ import { ErrorComponent } from './error/error.component';
 //import { MarsPhotosSpiritComponent } from './mars-photos-spirit/mars-photos-spirit.component';
 
 const routes: Routes = [
-  { path: 'News', component: NewsComponent },
-  { path: 'NasaGallery', component: NasaGalleryComponent },
-  { path: 'MarsPhotos/Curiosity', component: MarsPhotosCuriosityComponent },
+  { path: 'news', component: NewsComponent },
+  { path: 'gallery', component: NasaGalleryComponent },
+  { path: 'mars/curiosity', component: MarsPhotosCuriosityComponent },
   //{ path: 'MarsPhotos/Opportunity', component: MarsPhotosOpportunityComponent },
   //{ path: 'MarsPhotos/Spirit', component: MarsPhotosSpiritComponent },
-  { path: 'APOD', component: APODComponent },
-  { path: 'Error', component: ErrorComponent },
-  { path: '', redirectTo: '/News', pathMatch: 'full' }
+  { path: 'apod', component: APODComponent },
+  { path: 'error', component: ErrorComponent },
+  { path: '', redirectTo: '/news', pathMatch: 'full' },
+  { path: '**', redirectTo: '/news' },
 ];
 
 @NgModule({
