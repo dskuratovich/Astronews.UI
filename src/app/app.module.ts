@@ -46,11 +46,6 @@ import { AboutComponent } from './about/about.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      { path: 'news', component: NewsComponent },
-      { path: '', redirectTo: 'news', pathMatch: 'full' },
-      { path: '**', redirectTo: 'news' },
-    ]),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,

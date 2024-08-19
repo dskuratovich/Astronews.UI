@@ -12,12 +12,12 @@ const routes: Routes = [
   { path: 'news', component: NewsComponent },
   { path: 'gallery', component: NasaGalleryComponent },
   { path: 'mars/curiosity', component: MarsPhotosCuriosityComponent },
-  //{ path: 'MarsPhotos/Opportunity', component: MarsPhotosOpportunityComponent },
-  //{ path: 'MarsPhotos/Spirit', component: MarsPhotosSpiritComponent },
+  //{ path: 'mars/opportunity', component: MarsPhotosOpportunityComponent },
+  //{ path: 'mars/spirit', component: MarsPhotosSpiritComponent },
   { path: 'apod', component: APODComponent },
   { path: 'error', component: ErrorComponent },
-  { path: '', redirectTo: '/news', pathMatch: 'full' },
-  { path: '**', redirectTo: '/news' },
+  { path: '', redirectTo: 'news', pathMatch: 'full' },
+  { path: '**', redirectTo: 'news' },
 ];
 
 @NgModule({
