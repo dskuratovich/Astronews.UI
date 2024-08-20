@@ -181,6 +181,7 @@ ul {
 
 .mobile-menu-button {
   display: none;
+  margin-left: auto;
 }
 
 .mobile-menu-button .icon .fa-bars {
@@ -207,13 +208,13 @@ ul {
     font-size: 18px;
   }
   .nav-menu {
-    visibility: collapse;
+    display: none;
   }
   .search-bar {
-    visibility: collapse;
+    display: none;
   }
   .theme-switcher {
-    visibility: collapse;
+    display: none;
   }
   .mobile-menu-button {
     display: block;
