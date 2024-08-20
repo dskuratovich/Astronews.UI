@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,10 @@ export class ApiKeyService {
   }
 
   getApiKey(): string {
-    return this.apiKey;
+    if (this.apiKey) {
+      return this.apiKey;
+    } else {
+      return '';
+    }
   }
 }

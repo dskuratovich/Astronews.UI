@@ -1,4 +1,11 @@
-export const environment = {
+import { fs } from 'fs';
+import { path } from 'path';
+
+const environmentFilePath = path.join(__dirname, '../src/environments/environment.prod.ts');
+const apiKey = process.env.NASA_API_KEY;
+
+if (apiKey) {
+  const content = `export const environment = {
   production: true,
   api: {
     newsEndpoint: 'https://api.spaceflightnewsapi.net/v4/articles/',
@@ -22,6 +29,10 @@ export const environment = {
       'https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos',
   },
   secrets: {
-    api_key: '',
+    api_key: '${apiKey}',
   },
 };
+`;
+
+  fs.writeFileSync(environmentFilePath, content, 'utf-8');
+}

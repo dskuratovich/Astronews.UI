@@ -2,7 +2,7 @@
   command = "ng build --configuration production"
   publish = "dist/astronews.ui"
 [build.environment]
-  api_key = ""
+  NASA_API_KEY = ""
 [[redirects]]
   from = "/*"
   to = "/index.html"

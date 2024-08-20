@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   api: {
     newsEndpoint: 'https://api.spaceflightnewsapi.net/v4/articles/',
     nasaEndpoint: 'https://images-api.nasa.gov/search',
@@ -22,6 +22,8 @@ export const environment = {
       'https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos',
   },
   secrets: {
-    api_key: '',
+    api_key: '0fu6kxm8VJ28tAbk0iRAfazBSiqBW5v344fYDIiR',
   },
 };
+
+
