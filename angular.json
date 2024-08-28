@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@ngx-env/builder",
           "options": {
             "outputPath": "dist/astronews.ui",
             "index": "src/index.html",
