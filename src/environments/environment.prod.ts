@@ -22,6 +22,6 @@ export const environment = {
       'https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos',
   },
   secrets: {
-    api_key: process.env['NG_APP_NASA_API_KEY'] || '',
+    api_key: import.meta.env.NG_APP_NASA_API_KEY || '',
   },
 };
