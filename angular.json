@@ -36,7 +36,7 @@
               "node_modules/modern-normalize/modern-normalize.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": ["config.js"],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
