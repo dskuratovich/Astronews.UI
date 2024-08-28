@@ -55,7 +55,6 @@ export class DataService {
     } else {
       requestUrl = requestUrl.concat(`?api_key=${apiKey}`);
     }
-    console.log(requestUrl);
     return this.http
       .get<MarsRootModel>(requestUrl)
       .pipe(catchError(this.handleError));
