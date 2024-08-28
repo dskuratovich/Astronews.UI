@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@ngx-env/builder",
+          "builder": "@ngx-env/builder:browser",
           "options": {
             "outputPath": "dist/astronews.ui",
             "index": "src/index.html",
@@ -36,7 +36,7 @@
               "node_modules/modern-normalize/modern-normalize.css",
               "src/styles.scss"
             ],
-            "scripts": ["config.js"],
+            "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
