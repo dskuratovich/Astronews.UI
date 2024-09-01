@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # Privacy
-environment.prod.ts
+environment.ts
