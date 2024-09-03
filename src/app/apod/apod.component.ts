@@ -177,11 +177,12 @@ export class APODComponent {
   }
 
   private convertDateToString(givenDate: Date): string {
-    let year = givenDate.getFullYear();
+    let year = givenDate.getFullYear().toString();
     let month = String(givenDate.getMonth() + 1).padStart(2, '0');
-    let day = String(givenDate.getDate() - 1).padStart(2, '0');
+    let day = String(givenDate.getDate()).padStart(2, '0');
 
     let yearString = `${year}-${month}-${day}`;
+
     return yearString;
   }
 
@@ -195,9 +196,12 @@ export class APODComponent {
 
   private defaultCallApi(): void {
     let date_default = new Date();
-    let yearEnd = this.convertDateToString(date_default);
+
+    let dateEnd = this.convertDateToString(date_default);
+
     date_default.setMonth(this.date.getMonth() - 1);
-    let yearStart = this.convertDateToString(date_default);
-    this.apiCall(yearStart, yearEnd);
+    let dateStart = this.convertDateToString(date_default);
+
+    this.apiCall(dateStart, dateEnd);
   }
 }
