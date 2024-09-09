@@ -43,7 +43,7 @@ Here is the list of prefixes used on different pages (News, Curiosity, NASA, APO
   - `s` - search by summary
   - `p` - search by published before and published after dates (dates in `yyyy-mm-dd` format split with comma `,`)
   - `pb` - search by published before date (`yyyy-mm-dd` format)
-  - `pa` - search by published after date (`yyyy-mm-dd format
+  - `pa` - search by published after date (`yyyy-mm-dd` format)
 
 ## License
 
