@@ -15,26 +15,26 @@ A simple web app that visualizes data from the NASA API and SpaceflightAPI.
 
 ## Installation
 
-Download [Node.JS](https://nodejs.org/en/download/package-manager)
-Install [Angular CLI](https://angular.dev/tools/cli/setup-local): `npm install -g @angular/cli`
-Clone the repo: `git clone https://github.com/Needlide/Astronews.UI.git`
-Navigate to the project directory: `cd repo`
+Download [Node.JS](https://nodejs.org/en/download/package-manager)__
+Install [Angular CLI](https://angular.dev/tools/cli/setup-local): `npm install -g @angular/cli`__
+Clone the repo: `git clone https://github.com/Needlide/Astronews.UI.git`__
+Navigate to the project directory: `cd repo`__
 Install dependencies: `npm install`
 
 ## Run locally
 
-Obtain the API key at [NASA Open APIs](https://api.nasa.gov/#signUp)
-Create a new file `src/environments/environment.ts` and copy code from `environment.prod.ts` to newly created `environment.ts`
-Put your API key from [NASA Open APIs](https://api.nasa.gov/#signUp) in the `secrets/api_key` section like this: `api_key: YOUR_API_KEY_GOES_HERE`
+Obtain the API key at [NASA Open APIs](https://api.nasa.gov/#signUp)__
+Create a new file `src/environments/environment.ts` and copy code from `environment.prod.ts` to newly created `environment.ts`__
+Put your API key from [NASA Open APIs](https://api.nasa.gov/#signUp) in the `secrets/api_key` section like this: `api_key: YOUR_API_KEY_GOES_HERE`__
 Save the file
 
 ## Usage
 
-For advanced usage of the search bar append the prefix before the search term
-Prefix must be split from the search term by semicolon `:`
-Example: `t: NASA` - will search for titles which contain keyword `NASA`
+For advanced usage of the search bar append the prefix before the search term__
+Prefix must be split from the search term by semicolon `:`__
+Example: `t: NASA` - will search for titles which contain keyword `NASA`__
 
-Here is the list of prefixes used on different pages (News, Curiosity, NASA, APOD):
+Here is the list of prefixes used on different pages (News, Curiosity, NASA, APOD):__
 
 - **News**
   - No prefix - search by title and summary
