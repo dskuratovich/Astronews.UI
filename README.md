@@ -34,7 +34,7 @@ For advanced usage of the search bar append the prefix before the search term\
 Prefix must be split from the search term by semicolon `:`\
 Example: `t: NASA` - will search for titles which contain keyword `NASA`
 
-Here is the list of prefixes used on different pages (News, Curiosity, NASA, APOD):\
+Here is the list of prefixes used on different pages (News, Curiosity, NASA, APOD):
 
 - **News**
   - No prefix - search by title and summary
