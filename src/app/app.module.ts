@@ -24,6 +24,7 @@ import { BackToTopComponent } from './back-to-top/back-to-top.component';
 import { DateFormatPipe } from './date-format.pipe';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { AboutComponent } from './about/about.component';
+import { PageContainerComponent } from '@/app/components';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { AboutComponent } from './about/about.component';
     BackToTopComponent,
     DateFormatPipe,
     MobileMenuComponent,
-    AboutComponent
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,16 +56,20 @@ import { AboutComponent } from './about/about.component';
       //enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+    PageContainerComponent,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  exports: [
+    HeaderComponent,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

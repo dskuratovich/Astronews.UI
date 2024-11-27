@@ -1,0 +1,18 @@
+<div class="flex">
+  <header class="header flex flex-1 flex-col gap-8 lg:flex-row lg:justify-between">
+    <div class="header-logo flex items-center gap-2">
+      <img ngSrc="assets/images/AstronewsLogo.png" alt="Astronews" width="36" height="36" />
+
+      <a class="uppercase font-bold text-xl" routerLink="/">
+        Astronews
+      </a>
+    </div>
+
+    <nav class="header-links flex items-center gap-4">
+      <a *ngFor="let link of links" class="hover:text-blue-700 border-blue-700"
+         routerLinkActive="border-b-2 text-blue-900" [routerLink]="link.route">
+        {{ link.label }}
+      </a>
+    </nav>
+  </header>
+</div>
