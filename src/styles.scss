@@ -1,5 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-@import "node_modules/modern-normalize/modern-normalize.css";
+@tailwind base;
+//@tailwind utilities;
+
 @import "themes";
 
 html {
@@ -108,4 +109,13 @@ p, h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   display: inline-block;
   padding: 15px 32px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
